@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; //allows the script to reference the UI
 
-public class NewBehaviourScript : MonoBehaviour
+public class ObjectScoring : MonoBehaviour
 {
     public GameObject objectText;
     public int currentScore;
@@ -11,8 +11,8 @@ public class NewBehaviourScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other){
         collectSound.Play();
-        currentScore += 1;
-        objectText.GetComponent<Text>().Text = "OBJECT: " + currentScore;
+        currentScore = currentScore + 1;
+        objectText.GetComponent<Text>().text = "OBJECT: " + currentScore;
         Destroy(gameObject);
     }
 }
