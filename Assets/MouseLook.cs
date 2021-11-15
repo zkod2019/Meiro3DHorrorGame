@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-    public float mouseSensitivity = 50f ; //spead at which the mouse moves
+    [SerializeField] float mouseSensitivity = 10f; // speed at which the mouse moves
     public Transform playerBody; 
     float xRotation = 0f;
 
-    // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked; //locking cursor to center of screen so that the mouse isn't seen
+        Cursor.lockState = CursorLockMode.Locked; // locking cursor to center of screen so that the mouse isn't seen
     }
 
-    // Update is called once per frame
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime; 
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime; 
+        float mouseX = Input.GetAxis("Mouse X") * this.mouseSensitivity; 
+        float mouseY = Input.GetAxis("Mouse Y") * this.mouseSensitivity; 
 
         xRotation -= mouseY; 
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
