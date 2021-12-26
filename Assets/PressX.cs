@@ -7,17 +7,41 @@ using UnityEngine.UI;
 public class PressX : MonoBehaviour
 {
     public GameObject pressX;
+    public GameObject hint;
 
     void Start()
     {
         pressX.SetActive(false);
+        hint.SetActive(false);
     }
 
     void OnTriggerEnter(Collider player)
     {
-        if (player.gameObject.tag == "Player"){
-            pressX.SetActive(true);
+        //pressX.SetActive(false);
+
+        if(player.gameObject.tag == "Player"){
+            
+        //    if (player.gameObject.GetComponent<Collider>().bounds.Contains(GetComponent<Collider>().bounds.min) 
+        //       && player.gameObject.GetComponent<Collider>().bounds.Contains(GetComponent<Collider>().bounds.max)) {
+             pressX.SetActive(true);
+
+
+            //}
         }
+    }
+
+    void OnTriggerExit(Collider player)
+    {
+        if(player.gameObject.tag == "Player"){
+             pressX.SetActive(false);
+        }
+    }
+
+    void Update(){
+        if (Input.GetKeyDown(KeyCode.Space) && pressX.active){
+            hint.SetActive(!hint.active);
+        }
+
     }
 
 
