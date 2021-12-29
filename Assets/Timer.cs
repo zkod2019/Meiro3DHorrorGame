@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
-    public float timeRemaining = 10;
+    public float timeRemaining = 0;
     public bool timerIsRunning = false;
     public Text timeText;
+    System.Random random = new System.Random();
 
     // Start is called before the first frame update
     void Start()
     {
+        timeRemaining = random.Next(120,520);
         timerIsRunning = true;
        
     }
@@ -19,6 +22,8 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
          if (timerIsRunning)
         {
             if (timeRemaining > 0)
@@ -31,6 +36,8 @@ public class Timer : MonoBehaviour
                 Debug.Log("Time has run out!");
                 timeRemaining = 0;
                 timerIsRunning = false;
+                // Application.LoadLevel(Application.loadedLevel); this works too
+                SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
             }
         }
         
