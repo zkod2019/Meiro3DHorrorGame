@@ -21,7 +21,7 @@ public class HintController : MonoBehaviour {
 
         //   3. For every barrel, assign a question (and answer)
         for (int i = 0; i < barrels.Length; i++) {
-            barrels[i].GetComponent<PressX>().hintSprite = iqQuestions[i];
+            barrels[i].GetComponent<PressX>().questionSprite = iqQuestions[i];
             barrels[i].GetComponent<PressX>().answer = iqAnswers[i].text;
         }
     }
