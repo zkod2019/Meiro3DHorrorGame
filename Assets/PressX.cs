@@ -23,9 +23,12 @@ public class PressX : MonoBehaviour{
     }
 
     void OnTriggerEnter(Collider player) {
-        if(player.gameObject.tag == "Player"){
+       
+        if(this.gameObject.activeSelf){
+           if(player.gameObject.tag == "Player"){
             question.GetComponent<Image>().sprite = questionSprite;
             pressX.SetActive(true);
+        }
         }
     }
 

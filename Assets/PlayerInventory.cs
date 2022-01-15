@@ -10,7 +10,7 @@ public class PlayerInventory : MonoBehaviour
     public void Add(Collectable obj) {
         inventory.Add(obj);
 
-        GetComponentInChildren<Text>().text = "Inventory: ";
+        GetComponentInChildren<Text>().text = "INVENTORY: ";
         foreach (Collectable collectable in inventory) {
             GetComponentInChildren<Text>().text += collectable.collectableName + ", ";
         }
