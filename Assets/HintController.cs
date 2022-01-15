@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using System.IO;
 
 public class HintController : MonoBehaviour {
     void Start() {
@@ -15,6 +17,14 @@ public class HintController : MonoBehaviour {
         //   1. Load all the question image textures (and answer texts)
         Sprite[] iqQuestions = Array.ConvertAll(Resources.LoadAll("iq-questions", typeof(Sprite)), asset => (Sprite)asset);
         TextAsset[] iqAnswers = Array.ConvertAll(Resources.LoadAll("iq-answers", typeof(TextAsset)), asset => (TextAsset)asset);
+
+        Array.Sort(iqQuestions, (a, b) => 
+            Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(a))) - Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(b)))
+        );
+
+        Array.Sort(iqAnswers, (a, b) => 
+            Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(a))) - Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(b)))
+        );
 
         //   2. Get all the barrels in the level
         GameObject[] barrels = GameObject.FindGameObjectsWithTag("barrel");
