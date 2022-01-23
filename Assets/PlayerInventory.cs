@@ -22,10 +22,7 @@ public class PlayerInventory : MonoBehaviour
                 Debug.Log("All Obj Collected");
                 exitMaze.SetActive(false);
                 Debug.Log("Exit is open!");
+            }
         }
-        }
-
-        
-
     }
 }
