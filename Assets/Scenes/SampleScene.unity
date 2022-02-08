@@ -7416,6 +7416,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23870649585828812, guid: 061e3657254424e418e8d7d43d0de255, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ef8d5ff19082e074d881a533d2119034, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 061e3657254424e418e8d7d43d0de255, type: 3}
 --- !u!1 &537102797
@@ -9456,6 +9460,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23870649585828812, guid: 061e3657254424e418e8d7d43d0de255, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c7c54fe0ff9636e4284e4e2ab5d9c536, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 061e3657254424e418e8d7d43d0de255, type: 3}
 --- !u!1 &692941019
@@ -17209,6 +17217,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23870649585828812, guid: 061e3657254424e418e8d7d43d0de255, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4de6d55c8a50386459a2468e56833f5e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 061e3657254424e418e8d7d43d0de255, type: 3}
 --- !u!1 &1274543014 stripped
@@ -17233,6 +17245,7 @@ MonoBehaviour:
   questionSprite: {fileID: 0}
   answer: 
   userAnswer: 
+  type: 1
 --- !u!65 &1274543016
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19166,6 +19179,7 @@ MonoBehaviour:
   questionSprite: {fileID: 0}
   answer: 
   userAnswer: 
+  type: 2
 --- !u!136 &1397606161
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -24675,6 +24689,7 @@ MonoBehaviour:
   questionSprite: {fileID: 0}
   answer: 
   userAnswer: 
+  type: 0
 --- !u!65 &1853746141
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25961,7 +25976,6 @@ MonoBehaviour:
   timerIsRunning: 0
   timeText: {fileID: 1374764601}
   loopText: {fileID: 1592051897}
-  loopCount: 0
 --- !u!114 &1995404502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27199,6 +27213,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23870649585828812, guid: 061e3657254424e418e8d7d43d0de255, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ef8d5ff19082e074d881a533d2119034, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 061e3657254424e418e8d7d43d0de255, type: 3}
 --- !u!1 &2061120109 stripped
@@ -27223,6 +27241,7 @@ MonoBehaviour:
   questionSprite: {fileID: 0}
   answer: 
   userAnswer: 
+  type: 2
 --- !u!65 &2061120111
 BoxCollider:
   m_ObjectHideFlags: 0
