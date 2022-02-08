@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,26 +48,30 @@ public class HintController : MonoBehaviour
 
         //   2. Get all the barrels in the level
         GameObject[] barrels = GameObject.FindGameObjectsWithTag("barrel");
+        GameObject[] logicBarrels = barrels.Where(b => b.GetComponent<PressX>().type == QuestionType.Logic).ToArray();
+        GameObject[] mathBarrels = barrels.Where(b => b.GetComponent<PressX>().type == QuestionType.Math).ToArray();
+        GameObject[] readingBarrels = barrels.Where(b => b.GetComponent<PressX>().type == QuestionType.Reading).ToArray();
 
         //   3. For every barrel, assign a question (and answer)
-        for (int i = 0; i < barrels.Length; i++)
+        for (int i = 0; i < logicBarrels.Length; i++)
         {
-            var barrelScript = barrels[i].GetComponent<PressX>();
-            switch (barrelScript.type)
-            {
-                case QuestionType.Logic:
-                    barrelScript.questionSprite = iqQuestions[i];
-                    barrelScript.answer = iqAnswers[i].text;
-                    break;
-                case QuestionType.Math:
-                    barrelScript.questionSprite = mathQuestions[i];
-                    barrelScript.answer = mathAnswers[i].text;
-                    break;
-                case QuestionType.Reading:
-                    barrelScript.questionSprite = readingQuestions[i];
-                    barrelScript.answer = readingAnswers[i].text;
-                    break;
-            }
+            var barrelScript = logicBarrels[i].GetComponent<PressX>();
+            barrelScript.questionSprite = iqQuestions[i];
+            barrelScript.answer = iqAnswers[i].text;
+        }
+
+        for (int i = 0; i < mathBarrels.Length; i++)
+        {
+            var barrelScript = mathBarrels[i].GetComponent<PressX>();
+            barrelScript.questionSprite = mathQuestions[i];
+            barrelScript.answer = mathAnswers[i].text;
+        }
+
+        for (int i = 0; i < readingBarrels.Length; i++)
+        {
+            var barrelScript = readingBarrels[i].GetComponent<PressX>();
+            barrelScript.questionSprite = readingQuestions[i];
+            barrelScript.answer = readingAnswers[i].text;
         }
     }
 }
