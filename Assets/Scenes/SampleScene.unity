@@ -14163,6 +14163,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1984506319469290, guid: 8494a47407dd047a49c1776429bf639b, type: 3}
+      propertyPath: m_TagString
+      value: crate
+      objectReference: {fileID: 0}
     - target: {fileID: 4414009224928742, guid: 8494a47407dd047a49c1776429bf639b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -19799,6 +19803,24 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1984506319469290, guid: 8494a47407dd047a49c1776429bf639b, type: 3}
   m_PrefabInstance: {fileID: 977795315}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1456780334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456780333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2039ab2c27136a249b54dbd5903b6fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressSpace: {fileID: 2073041388}
+  inputText: {fileID: 1747355068}
+  questionSprite: {fileID: 0}
+  answer: 
+  userAnswer: 
+  type: 3
 --- !u!65 &1456780336
 BoxCollider:
   m_ObjectHideFlags: 0

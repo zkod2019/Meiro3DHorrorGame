@@ -6,6 +6,8 @@ TagManager:
   tags:
   - barrel
   - hint-image
+  - crate
+  - time
   layers:
   - Default
   - TransparentFX

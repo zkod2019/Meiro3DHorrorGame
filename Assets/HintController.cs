@@ -11,6 +11,7 @@ public enum QuestionType
     Logic,
     Reading,
     Math,
+    Puzzle,
 }
 
 public class HintController : MonoBehaviour
@@ -31,6 +32,9 @@ public class HintController : MonoBehaviour
         Sprite[] readingQuestions = Array.ConvertAll(Resources.LoadAll("reading/questions", typeof(Sprite)), asset => (Sprite)asset);
         TextAsset[] readingAnswers = Array.ConvertAll(Resources.LoadAll("reading/answers", typeof(TextAsset)), asset => (TextAsset)asset);
 
+        Sprite[] puzzleQuestions = Array.ConvertAll(Resources.LoadAll("tPuzzles/questions", typeof(Sprite)), asset => (Sprite)asset);
+        TextAsset[] puzzleAnswers = Array.ConvertAll(Resources.LoadAll("tPuzzles/answers", typeof(TextAsset)), asset => (TextAsset)asset);
+
         Array.Sort(iqQuestions, (a, b) =>
             Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(a))) - Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(b))));
         Array.Sort(iqAnswers, (a, b) =>
@@ -46,11 +50,19 @@ public class HintController : MonoBehaviour
         Array.Sort(readingAnswers, (a, b) =>
             Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(a))) - Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(b))));
 
+        Array.Sort(puzzleQuestions, (a, b) =>
+            Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(a))) - Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(b))));
+        Array.Sort(puzzleAnswers, (a, b) =>
+            Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(a))) - Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(b))));
+
         //   2. Get all the barrels in the level
         GameObject[] barrels = GameObject.FindGameObjectsWithTag("barrel");
         GameObject[] logicBarrels = barrels.Where(b => b.GetComponent<PressX>().type == QuestionType.Logic).ToArray();
         GameObject[] mathBarrels = barrels.Where(b => b.GetComponent<PressX>().type == QuestionType.Math).ToArray();
         GameObject[] readingBarrels = barrels.Where(b => b.GetComponent<PressX>().type == QuestionType.Reading).ToArray();
+
+        GameObject[] crates = GameObject.FindGameObjectsWithTag("crate");
+        GameObject[] puzzleCrates = crates.Where(b => b.GetComponent<PressSpace>().type == QuestionType.Puzzle).ToArray();
 
         //   3. For every barrel, assign a question (and answer)
         for (int i = 0; i < logicBarrels.Length; i++)
@@ -72,6 +84,13 @@ public class HintController : MonoBehaviour
             var barrelScript = readingBarrels[i].GetComponent<PressX>();
             barrelScript.questionSprite = readingQuestions[i];
             barrelScript.answer = readingAnswers[i].text;
+        }
+
+        for (int i = 0; i < puzzleCrates.Length; i++)
+        {
+            var crateScript = puzzleCrates[i].GetComponent<PressSpace>();
+            crateScript.questionSprite = puzzleQuestions[i];
+            crateScript.answer = puzzleAnswers[i].text;
         }
     }
 }
