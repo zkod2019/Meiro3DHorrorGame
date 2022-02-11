@@ -26,7 +26,7 @@ public class PressSpace : MonoBehaviour
 
     void OnTriggerEnter(Collider player)
     {
-        if (player.gameObject.tag == "Player")
+        if (!this.questionStatus.answered && player.gameObject.tag == "Player")
         {
             inputText.GetComponent<InputField>().text = "";
             question.GetComponent<Image>().sprite = questionStatus.question;
@@ -62,6 +62,18 @@ public class PressSpace : MonoBehaviour
             GameObject player = GameObject.Find("FirstPersonPlayer");
             Timer timer = player.GetComponent<Timer>();
             timer.timeRemaining += 500;
+
+            if (type == QuestionType.Puzzle){
+                for (int i = 0; i < HintController.puzzleQuestions.Length; i++){
+                    if (HintController.puzzleQuestions[i].question == this.questionStatus.question){
+                        HintController.puzzleQuestions[i].answered = true;
+                    }
+                }
+            } 
+
+            HintController.InitializeBarrels();
+            
+
             inputText.GetComponent<InputField>().onValueChanged.RemoveAllListeners();
             this.gameObject.SetActive(false);
             pressSpace.SetActive(false);
