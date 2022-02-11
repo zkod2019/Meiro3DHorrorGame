@@ -10,8 +10,7 @@ public class PressSpace : MonoBehaviour
     public GameObject inputText;
     GameObject question;
 
-    public Sprite questionSprite;
-    public String answer;
+    public QuestionStatus questionStatus;
     public String userAnswer;
 
     public QuestionType type;
@@ -30,7 +29,7 @@ public class PressSpace : MonoBehaviour
         if (player.gameObject.tag == "Player")
         {
             inputText.GetComponent<InputField>().text = "";
-            question.GetComponent<Image>().sprite = questionSprite;
+            question.GetComponent<Image>().sprite = questionStatus.question;
 
             pressSpace.SetActive(true);
             inputText.GetComponent<InputField>().onValueChanged.AddListener(delegate { ValueChangeCheck(); });
@@ -56,8 +55,8 @@ public class PressSpace : MonoBehaviour
     {
         userAnswer = inputText.GetComponent<InputField>().text;
         Debug.Log(userAnswer);
-        Debug.Log(this.answer);
-        if (userAnswer == this.answer)
+        Debug.Log(this.questionStatus.answer);
+        if (userAnswer == this.questionStatus.answer)
         {
             Debug.Log("Correct Answer");
             GameObject player = GameObject.Find("FirstPersonPlayer");

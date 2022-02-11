@@ -10,8 +10,7 @@ public class PressX : MonoBehaviour
     public GameObject inputText;
     GameObject question;
 
-    public Sprite questionSprite;
-    public String answer;
+    public QuestionStatus questionStatus;
     public String userAnswer;
 
     public QuestionType type;
@@ -27,10 +26,10 @@ public class PressX : MonoBehaviour
 
     void OnTriggerEnter(Collider player)
     {
-        if (player.gameObject.tag == "Player")
+        if (!this.questionStatus.answered && player.gameObject.tag == "Player")
         {
             inputText.GetComponent<InputField>().text = "";
-            question.GetComponent<Image>().sprite = questionSprite;
+            question.GetComponent<Image>().sprite = questionStatus.question;
 
             pressX.SetActive(true);
             inputText.GetComponent<InputField>().onValueChanged.AddListener(delegate { ValueChangeCheck(); });
@@ -56,10 +55,35 @@ public class PressX : MonoBehaviour
     {
         userAnswer = inputText.GetComponent<InputField>().text;
         Debug.Log(userAnswer);
-        Debug.Log(this.answer);
-        if (userAnswer == this.answer)
+        Debug.Log(this.questionStatus.answer);
+        if (userAnswer == this.questionStatus.answer)
         {
             Debug.Log("Correct Answer");
+
+            if (type == QuestionType.Logic){
+                for (int i = 0; i < HintController.iqQuestions.Length; i++){
+                    if (HintController.iqQuestions[i].question == this.questionStatus.question){
+                        HintController.iqQuestions[i].answered = true;
+
+                    }
+                }
+            } else if (type == QuestionType.Math){
+                for (int i = 0; i < HintController.mathQuestions.Length; i++){
+                    if (HintController.mathQuestions[i].question == this.questionStatus.question){
+                        HintController.mathQuestions[i].answered = true;
+
+                    }
+                }
+            }else if (type == QuestionType.Reading){
+                for (int i = 0; i < HintController.readingQuestions.Length; i++){
+                    if (HintController.readingQuestions[i].question == this.questionStatus.question){
+                        HintController.readingQuestions[i].answered = true;
+                    }
+                }
+            }
+
+            HintController.InitializeBarrels();
+            
 
             inputText.GetComponent<InputField>().onValueChanged.RemoveAllListeners();
             this.gameObject.SetActive(false);
