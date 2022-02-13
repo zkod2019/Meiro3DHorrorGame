@@ -31,11 +31,10 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider player)
+    void OnTriggerEnter(Collider other)
     {
-        if (player.tag == "exit") { 
+        if (other.tag == "exit") { 
             winnerCanvas.SetActive(true);
         }
     }
-
 }
