@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerInventory : MonoBehaviour
 {
     public List<Collectable> inventory;
     public int count;
     public GameObject exitMaze;
+    public GameObject winnerCanvas;
 
     public void Add(Collectable obj) {
         inventory.Add(obj);
@@ -18,6 +20,9 @@ public class PlayerInventory : MonoBehaviour
             GetComponentInChildren<Text>().text += collectable.collectableName + ", ";
             count++;
 
+           // if (count==1){
+            //    winnerCanvas.SetActive(true);
+           // }
             if (count==8){
                 Debug.Log("All Obj Collected");
                 exitMaze.SetActive(false);
@@ -28,7 +33,9 @@ public class PlayerInventory : MonoBehaviour
 
     void OnTriggerEnter(Collider player)
     {
-        //
+        if (player.tag == "exit") { 
+            winnerCanvas.SetActive(true);
+        }
     }
 
 }

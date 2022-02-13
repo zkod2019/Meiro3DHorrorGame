@@ -8,6 +8,8 @@ TagManager:
   - hint-image
   - crate
   - time
+  - winner
+  - exit
   layers:
   - Default
   - TransparentFX
