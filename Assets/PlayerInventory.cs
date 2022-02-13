@@ -25,4 +25,10 @@ public class PlayerInventory : MonoBehaviour
             }
         }
     }
+
+    void OnTriggerEnter(Collider player)
+    {
+        //
+    }
+
 }

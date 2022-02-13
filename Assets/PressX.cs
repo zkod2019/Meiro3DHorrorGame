@@ -9,11 +9,12 @@ public class PressX : MonoBehaviour
     public GameObject pressX;
     public GameObject inputText;
     GameObject question;
-
     public QuestionStatus questionStatus;
     public String userAnswer;
-
     public QuestionType type;
+    public static int correctIq = 0;
+    public static int correctMath = 0;
+    public static int correctReading = 0;
 
     void Start()
     {
@@ -64,6 +65,8 @@ public class PressX : MonoBehaviour
                 for (int i = 0; i < HintController.iqQuestions.Length; i++){
                     if (HintController.iqQuestions[i].question == this.questionStatus.question){
                         HintController.iqQuestions[i].answered = true;
+                        correctIq =+ 1;
+                        Debug.Log(correctIq);
 
                     }
                 }
@@ -71,13 +74,16 @@ public class PressX : MonoBehaviour
                 for (int i = 0; i < HintController.mathQuestions.Length; i++){
                     if (HintController.mathQuestions[i].question == this.questionStatus.question){
                         HintController.mathQuestions[i].answered = true;
-
+                        correctMath = correctMath + 1;
+                        Debug.Log("total answered: " + correctMath);
                     }
                 }
             }else if (type == QuestionType.Reading){
                 for (int i = 0; i < HintController.readingQuestions.Length; i++){
                     if (HintController.readingQuestions[i].question == this.questionStatus.question){
                         HintController.readingQuestions[i].answered = true;
+                        correctReading =+ 1;
+                        Debug.Log(correctReading);
                     }
                 }
             }
