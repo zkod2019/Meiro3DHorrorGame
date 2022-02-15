@@ -18,7 +18,7 @@ public class Timer : MonoBehaviour
     void Start()
     {
         DisplayLoop();
-        timeRemaining = 30; //random.Next(600,1800);
+        timeRemaining = random.Next(600,1800);
         timerIsRunning = true;
     }
 
