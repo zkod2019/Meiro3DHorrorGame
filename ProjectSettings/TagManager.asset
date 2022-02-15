@@ -10,6 +10,7 @@ TagManager:
   - time
   - winner
   - exit
+  - result
   layers:
   - Default
   - TransparentFX
