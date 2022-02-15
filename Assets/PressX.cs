@@ -61,19 +61,19 @@ public class PressX : MonoBehaviour
             if (type == QuestionType.Logic){
                 for (int i = 0; i < HintController.iqQuestions.Length; i++){
                     if (HintController.iqQuestions[i].question == this.questionStatus.question){
-                        HintController.iqQuestions[i].answered = true;
+                        HintController.answerQuestion(type, i);
                     }
                 }
             } else if (type == QuestionType.Math){
                 for (int i = 0; i < HintController.mathQuestions.Length; i++){
                     if (HintController.mathQuestions[i].question == this.questionStatus.question){
-                        HintController.mathQuestions[i].answered = true;
+                        HintController.answerQuestion(type, i);
                     }
                 }
             }else if (type == QuestionType.Reading){
                 for (int i = 0; i < HintController.readingQuestions.Length; i++){
                     if (HintController.readingQuestions[i].question == this.questionStatus.question){
-                        HintController.readingQuestions[i].answered = true;
+                        HintController.answerQuestion(type, i);
                     }
                 }
             }

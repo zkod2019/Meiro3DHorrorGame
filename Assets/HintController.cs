@@ -26,6 +26,15 @@ public class QuestionStatus {
     }
 }
 
+/*
+[userName]/
+    {
+        loops: 4,
+        xQuestions: [false, false, false, true, false],
+    }
+*/
+
+
 public class HintController : MonoBehaviour
 {
     public static QuestionStatus[] iqQuestions;
@@ -34,6 +43,23 @@ public class HintController : MonoBehaviour
     public static QuestionStatus[] puzzleQuestions;
 
     static bool initial = true;
+
+    public static void answerQuestion(QuestionType type, int index) {
+        switch (type) {
+            case QuestionType.Logic:
+                iqQuestions[index].answered = true;
+                break;
+            case QuestionType.Math:
+                mathQuestions[index].answered = true;
+                break;
+            case QuestionType.Reading:
+                readingQuestions[index].answered = true;
+                break;
+            case QuestionType.Puzzle:
+                puzzleQuestions[index].answered = true;
+                break;
+        }
+    }
 
     public static void InitializeQuestions() {
         if (initial) {

@@ -66,7 +66,7 @@ public class PressSpace : MonoBehaviour
             if (type == QuestionType.Puzzle){
                 for (int i = 0; i < HintController.puzzleQuestions.Length; i++){
                     if (HintController.puzzleQuestions[i].question == this.questionStatus.question){
-                        HintController.puzzleQuestions[i].answered = true;
+                        HintController.answerQuestion(type, i);
                     }
                 }
             } 

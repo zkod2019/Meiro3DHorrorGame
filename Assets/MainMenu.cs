@@ -55,6 +55,18 @@ public class MainMenu : MonoBehaviour
         signUpErrMsg.SetActive(false);
 
         string url = $"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={API_KEY}";
+
+        /*
+            var n = 42;
+            var x = "hello " + n.toString();
+            var xButBetter = $"hello {n}";
+
+            // in js
+            var xButBetter = `hello ${n}`
+
+            // in python
+            xButButter = f'hello {n}'
+        */
         string username = signUpUser.GetComponent<TMP_InputField>().text.ToLower();
         string password = signUpPassword.GetComponent<TMP_InputField>().text.ToLower();
         Debug.Log(username);
@@ -75,7 +87,38 @@ public class MainMenu : MonoBehaviour
         Debug.Log(response.StatusCode);
 
         if (response.StatusCode == HttpStatusCode.OK) {
-            SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+            Auth.username = username;
+            Auth.idToken = (String)responseJson.GetValue("idToken");
+
+            string firestoreUrl = $"https://firestore.googleapis.com/v1/projects/meiro-ip/databases/(default)/documents/users?documentId={username}";
+
+            HintController.InitializeQuestions();
+            var initialJson = $@"{{""fields"": {{""loop"": {{""integerValue"":0}}, ""iqQuestions"": {{""arrayValue"": [{String.Join(",", Array.ConvertAll(HintController.iqQuestions, _ => "false"))}]}}, ""mathQuestions"": {{""arrayValue"": [{String.Join(",", Array.ConvertAll(HintController.mathQuestions, _ => "false"))}]}}, ""readingQuestions"": {{""arrayValue"": [{String.Join(",", Array.ConvertAll(HintController.readingQuestions, _ => "false"))}]}}, ""puzzleQuestions"": {{""arrayValue"": [{String.Join(",", Array.ConvertAll(HintController.puzzleQuestions, _ => "false"))}]}}}}";
+
+            var firestoreSetReq = new HttpRequestMessage
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri(firestoreUrl),
+                Headers = { 
+                    { HttpRequestHeader.Authorization.ToString(), $"Bearer {Auth.idToken}" },
+                    { HttpRequestHeader.Accept.ToString(), "application/json" },
+                },
+                Content = new StringContent(initialJson)
+            };
+
+            
+            Debug.Log("Sending firestore req!!! " + firestoreUrl);
+            var firestoreResponse = await client.SendAsync(firestoreSetReq);
+            var firestoreResponseString = await firestoreResponse.Content.ReadAsStringAsync();
+            Debug.Log(firestoreResponseString);
+
+            if (firestoreResponse.StatusCode == HttpStatusCode.OK) {
+                SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+
+            }   
+
+
+
         } else {
             var errorMessage = ((JObject)responseJson.GetValue("error")).GetValue("message").ToObject<string>();
 
@@ -109,7 +152,7 @@ public class MainMenu : MonoBehaviour
         Debug.Log(response.StatusCode);
 
         if (response.StatusCode == HttpStatusCode.OK) {
-            SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         } else {
             var errorMessage = ((JObject)responseJson.GetValue("error")).GetValue("message").ToObject<string>();
 
