@@ -12,6 +12,8 @@ public class PressX : MonoBehaviour
     public QuestionStatus questionStatus;
     public String userAnswer;
     public QuestionType type;
+    public int wrongAnswer = 0;
+    public Text answerText;
 
     void Start()
     {
@@ -28,7 +30,6 @@ public class PressX : MonoBehaviour
         {
             inputText.GetComponent<InputField>().text = "";
             question.GetComponent<Image>().sprite = questionStatus.question;
-
             pressX.SetActive(true);
             inputText.GetComponent<InputField>().onValueChanged.AddListener(delegate { ValueChangeCheck(); });
         }
@@ -49,6 +50,17 @@ public class PressX : MonoBehaviour
         }
     }
 
+    IEnumerator ExampleCoroutine(String displayMe)
+    {
+        answerText.text =  displayMe;
+        Debug.Log("hi");
+        yield return new WaitForSeconds(1);
+        Debug.Log("do u");
+        answerText.enabled = (false);
+        Debug.Log("byee");
+        
+    }
+
     public void ValueChangeCheck()
     {
         userAnswer = inputText.GetComponent<InputField>().text;
@@ -57,7 +69,8 @@ public class PressX : MonoBehaviour
         if (userAnswer == this.questionStatus.answer)
         {
             Debug.Log("Correct Answer");
-
+            StartCoroutine(ExampleCoroutine("CORRECT!"));
+             
             if (type == QuestionType.Logic){
                 for (int i = 0; i < HintController.iqQuestions.Length; i++){
                     if (HintController.iqQuestions[i].question == this.questionStatus.question){
@@ -80,7 +93,6 @@ public class PressX : MonoBehaviour
 
             HintController.InitializeBarrels();
             
-
             inputText.GetComponent<InputField>().onValueChanged.RemoveAllListeners();
             this.gameObject.SetActive(false);
             pressX.SetActive(false);
@@ -89,7 +101,15 @@ public class PressX : MonoBehaviour
         }
         else
         {
+            wrongAnswer += 1;
             Debug.Log("Wrong Answer! Try Again!");
+            if (wrongAnswer == 3){
+                inputText.GetComponent<InputField>().onValueChanged.RemoveAllListeners();
+                this.gameObject.SetActive(false);
+                pressX.SetActive(false);
+                question.SetActive(false);
+                inputText.SetActive(false);
+            }
         }
     }
 
