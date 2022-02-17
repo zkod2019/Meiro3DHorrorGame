@@ -93,7 +93,34 @@ public class MainMenu : MonoBehaviour
             string firestoreUrl = $"https://firestore.googleapis.com/v1/projects/meiro-ip/databases/(default)/documents/users?documentId={username}";
 
             HintController.InitializeQuestions();
-            var initialJson = $@"{{""fields"": {{""loop"": {{""integerValue"":0}}, ""iqQuestions"": {{""arrayValue"": [{String.Join(",", Array.ConvertAll(HintController.iqQuestions, _ => "false"))}]}}, ""mathQuestions"": {{""arrayValue"": [{String.Join(",", Array.ConvertAll(HintController.mathQuestions, _ => "false"))}]}}, ""readingQuestions"": {{""arrayValue"": [{String.Join(",", Array.ConvertAll(HintController.readingQuestions, _ => "false"))}]}}, ""puzzleQuestions"": {{""arrayValue"": [{String.Join(",", Array.ConvertAll(HintController.puzzleQuestions, _ => "false"))}]}}}}";
+            var initialJson = $@"
+                {{
+                    ""fields"": {{
+                        ""loop"": {{
+                            ""integerValue"": 0
+                        }},
+                        ""iqQuestions"": {{
+                            ""arrayValue"": {{
+                                ""values"": [{String.Join(",", Array.ConvertAll(HintController.iqQuestions, _ => $@"{{""booleanValue"": false}}"))}]
+                            }}
+                        }}, 
+                        ""mathQuestions"": {{
+                            ""arrayValue"": {{
+                                ""values"": [{String.Join(",", Array.ConvertAll(HintController.mathQuestions, _ => $@"{{""booleanValue"": false}}"))}]
+                            }}
+                        }},
+                        ""readingQuestions"": {{
+                            ""arrayValue"": {{
+                                ""values"": [{String.Join(",", Array.ConvertAll(HintController.readingQuestions, _ => $@"{{""booleanValue"": false}}"))}]
+                            }}
+                        }},
+                        ""puzzleQuestions"": {{
+                            ""arrayValue"": {{
+                                ""values"": [{String.Join(",", Array.ConvertAll(HintController.puzzleQuestions, _ => $@"{{""booleanValue"": false}}"))}]
+                            }}
+                        }}
+                    }}
+                }}";
 
             var firestoreSetReq = new HttpRequestMessage
             {
@@ -106,19 +133,12 @@ public class MainMenu : MonoBehaviour
                 Content = new StringContent(initialJson)
             };
 
-            
-            Debug.Log("Sending firestore req!!! " + firestoreUrl);
             var firestoreResponse = await client.SendAsync(firestoreSetReq);
             var firestoreResponseString = await firestoreResponse.Content.ReadAsStringAsync();
-            Debug.Log(firestoreResponseString);
 
             if (firestoreResponse.StatusCode == HttpStatusCode.OK) {
                 SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
-
-            }   
-
-
-
+            }
         } else {
             var errorMessage = ((JObject)responseJson.GetValue("error")).GetValue("message").ToObject<string>();
 
@@ -152,6 +172,8 @@ public class MainMenu : MonoBehaviour
         Debug.Log(response.StatusCode);
 
         if (response.StatusCode == HttpStatusCode.OK) {
+            Auth.username = username;
+            Auth.idToken = (String)responseJson.GetValue("idToken");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         } else {
             var errorMessage = ((JObject)responseJson.GetValue("error")).GetValue("message").ToObject<string>();
@@ -160,9 +182,5 @@ public class MainMenu : MonoBehaviour
             loginErrMsg.SetActive(true);
             loginErrMsg.GetComponent<Text>().text = errorMessage;
         }
-
     }
-
-
-
 }

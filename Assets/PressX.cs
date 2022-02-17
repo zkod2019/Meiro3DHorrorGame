@@ -50,15 +50,8 @@ public class PressX : MonoBehaviour
         }
     }
 
-    IEnumerator ExampleCoroutine(String displayMe)
-    {
-        answerText.text =  displayMe;
-        Debug.Log("hi");
-        yield return new WaitForSeconds(1);
-        Debug.Log("do u");
-        answerText.enabled = (false);
-        Debug.Log("byee");
-        
+    void HideAnswerText() {
+        answerText.enabled = false;
     }
 
     public void ValueChangeCheck()
@@ -69,7 +62,8 @@ public class PressX : MonoBehaviour
         if (userAnswer == this.questionStatus.answer)
         {
             Debug.Log("Correct Answer");
-            StartCoroutine(ExampleCoroutine("CORRECT!"));
+            answerText.text = "CORRECT!";
+            Invoke("HideAnswerText", 2);
              
             if (type == QuestionType.Logic){
                 for (int i = 0; i < HintController.iqQuestions.Length; i++){
@@ -102,7 +96,13 @@ public class PressX : MonoBehaviour
         else
         {
             wrongAnswer += 1;
+            answerText.text = "WRONG ANSWER!";
+            Invoke("HideAnswerText", 2);
             Debug.Log("Wrong Answer! Try Again!");
+            if (wrongAnswer == 2){
+                answerText.text = "WRONG! LAST TRY!";
+                Invoke("HideAnswerText", 2);
+            }
             if (wrongAnswer == 3){
                 inputText.GetComponent<InputField>().onValueChanged.RemoveAllListeners();
                 this.gameObject.SetActive(false);
@@ -120,8 +120,6 @@ public class PressX : MonoBehaviour
             question.SetActive(true);
             inputText.SetActive(true);
             pressX.SetActive(false);
-            // question.SetActive(!question.activeSelf);
-            // inputText.SetActive(!inputText.activeSelf);
         }
     }
 }

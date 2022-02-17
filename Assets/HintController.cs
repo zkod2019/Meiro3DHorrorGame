@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using System.Net;
+using System.Net.Http;
+using UnityEngine.SceneManagement;
 
 public enum QuestionType
 {
@@ -43,8 +46,9 @@ public class HintController : MonoBehaviour
     public static QuestionStatus[] puzzleQuestions;
 
     static bool initial = true;
+    private static readonly HttpClient client = new HttpClient();
 
-    public static void answerQuestion(QuestionType type, int index) {
+    public static async void answerQuestion(QuestionType type, int index) {
         switch (type) {
             case QuestionType.Logic:
                 iqQuestions[index].answered = true;
@@ -58,6 +62,59 @@ public class HintController : MonoBehaviour
             case QuestionType.Puzzle:
                 puzzleQuestions[index].answered = true;
                 break;
+        }
+        
+        string firestoreUrl = $"https://firestore.googleapis.com/v1/projects/meiro-ip/databases/(default)/documents/users?documentId={Auth.username}";
+        Debug.Log(firestoreUrl);
+        
+        HintController.InitializeQuestions();
+        var json = $@"
+            {{
+                ""fields"": {{
+                    ""loop"": {{
+                        ""integerValue"": {Timer.loopCount}
+                    }},
+                    ""iqQuestions"": {{
+                        ""arrayValue"": {{
+                            ""values"": [{String.Join(",", Array.ConvertAll(HintController.iqQuestions, q => $@"{{""booleanValue"": {q.answered.ToString().ToLower()} }}"))}]
+                        }}
+                    }}, 
+                    ""mathQuestions"": {{
+                        ""arrayValue"": {{
+                            ""values"": [{String.Join(",", Array.ConvertAll(HintController.mathQuestions, q => $@"{{""booleanValue"": {q.answered.ToString().ToLower()} }}"))}]
+                        }}
+                    }},
+                    ""readingQuestions"": {{
+                        ""arrayValue"": {{
+                            ""values"": [{String.Join(",", Array.ConvertAll(HintController.readingQuestions, q => $@"{{""booleanValue"": {q.answered.ToString().ToLower()} }}"))}]
+                        }}
+                    }},
+                    ""puzzleQuestions"": {{
+                        ""arrayValue"": {{
+                            ""values"": [{String.Join(",", Array.ConvertAll(HintController.puzzleQuestions, q => $@"{{""booleanValue"": {q.answered.ToString().ToLower()} }}"))}]
+                        }}
+                    }}
+                }}
+            }}";
+
+        var firestoreSetReq = new HttpRequestMessage
+        {
+            Method = HttpMethod.Post,
+            RequestUri = new Uri(firestoreUrl),
+            Headers = { 
+                { HttpRequestHeader.Authorization.ToString(), $"Bearer {Auth.idToken}" },
+                { HttpRequestHeader.Accept.ToString(), "application/json" },
+            },
+            Content = new StringContent(json)
+        };
+
+        var firestoreResponse = await client.SendAsync(firestoreSetReq);
+        var firestoreResponseString = await firestoreResponse.Content.ReadAsStringAsync();
+        Debug.Log(json);
+        Debug.Log(firestoreResponseString);
+
+        if (firestoreResponse.StatusCode == HttpStatusCode.OK) {
+            SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
         }
     }
 
@@ -123,7 +180,6 @@ public class HintController : MonoBehaviour
             {
                 puzzleQuestions[i] = new QuestionStatus(puzzleQuestionSprites[i], puzzleAnswers[i].text, false);
             }
-
         }
     }
 
