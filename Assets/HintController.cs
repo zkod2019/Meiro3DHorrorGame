@@ -64,7 +64,7 @@ public class HintController : MonoBehaviour
                 break;
         }
         
-        string firestoreUrl = $"https://firestore.googleapis.com/v1/projects/meiro-ip/databases/(default)/documents/users?documentId={Auth.username}";
+        string firestoreUrl = $"https://firestore.googleapis.com/v1/projects/meiro-ip/databases/(default)/documents/users/{Auth.username}";
         Debug.Log(firestoreUrl);
         
         HintController.InitializeQuestions();
@@ -99,7 +99,7 @@ public class HintController : MonoBehaviour
 
         var firestoreSetReq = new HttpRequestMessage
         {
-            Method = HttpMethod.Post,
+            Method = new HttpMethod("PATCH"),
             RequestUri = new Uri(firestoreUrl),
             Headers = { 
                 { HttpRequestHeader.Authorization.ToString(), $"Bearer {Auth.idToken}" },
@@ -113,9 +113,9 @@ public class HintController : MonoBehaviour
         Debug.Log(json);
         Debug.Log(firestoreResponseString);
 
-        if (firestoreResponse.StatusCode == HttpStatusCode.OK) {
-            SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
-        }
+        // if (firestoreResponse.StatusCode == HttpStatusCode.OK) {
+        //     SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+        // }
     }
 
     public static void InitializeQuestions() {
