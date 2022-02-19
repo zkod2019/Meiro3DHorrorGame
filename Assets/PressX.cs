@@ -53,6 +53,9 @@ public class PressX : MonoBehaviour
     void HideAnswerText() {
         answerText.enabled = false;
     }
+    void ShowAnswerText() {
+        answerText.enabled = true;
+    }
 
     public void ValueChangeCheck()
     {
@@ -96,11 +99,15 @@ public class PressX : MonoBehaviour
         else
         {
             wrongAnswer += 1;
-            answerText.text = "WRONG ANSWER!";
-            Invoke("HideAnswerText", 2);
+            if (wrongAnswer == 1){
+                answerText.text = "WRONG!";
+                ShowAnswerText();
+                Invoke("HideAnswerText", 2);
+            }
             Debug.Log("Wrong Answer! Try Again!");
             if (wrongAnswer == 2){
                 answerText.text = "WRONG! LAST TRY!";
+                ShowAnswerText();
                 Invoke("HideAnswerText", 2);
             }
             if (wrongAnswer == 3){
