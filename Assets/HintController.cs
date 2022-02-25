@@ -8,6 +8,7 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using UnityEngine.SceneManagement;
+using Newtonsoft.Json.Linq;
 
 public enum QuestionType
 {
@@ -118,7 +119,7 @@ public class HintController : MonoBehaviour
         // }
     }
 
-    public static void InitializeQuestions() {
+    public static async void InitializeQuestions() {
         if (initial) {
             Debug.Log("HintController trigerred");
             initial = false;
@@ -179,6 +180,110 @@ public class HintController : MonoBehaviour
             for (int i = 0; i < puzzleQuestionSprites.Length; i++)
             {
                 puzzleQuestions[i] = new QuestionStatus(puzzleQuestionSprites[i], puzzleAnswers[i].text, false);
+            }
+
+        
+            string firestoreUrl = $"https://firestore.googleapis.com/v1/projects/meiro-ip/databases/(default)/documents/users/{Auth.username}";
+
+            var firestoreResponse = await client.GetAsync(firestoreUrl);
+            var firestoreResponseString = await         firestoreResponse.Content.ReadAsStringAsync();
+            var json = JObject.Parse(firestoreResponseString);
+            Debug.Log(json);
+
+            /*
+
+            {
+                fields: {
+                    iqQuestions: {
+                        values: [
+                            {
+                                booleanValue: false
+                            }
+                        ]
+                    }
+                }
+            }
+
+            */
+
+            var fields = (JObject)json.GetValue("fields");
+            Debug.Log(fields);
+            Debug.Log((JObject)fields.GetValue("readingQuestions"));
+            
+            var readingQuestionsJson = 
+                (JArray)
+                (
+                    ((JObject)(
+                    (
+                        (
+                          (JObject)
+                          fields.GetValue("readingQuestions")
+                        )
+                        .GetValue("arrayValue")
+                    )
+                    )).GetValue("values")
+                );
+            Debug.Log(readingQuestionsJson);
+
+            var mathQuestionsJson = 
+                (JArray)
+                (
+                    ((JObject)(
+                    (
+                        (
+                          (JObject)
+                          fields.GetValue("mathQuestions")
+                        )
+                        .GetValue("arrayValue")
+                    )
+                    )).GetValue("values")
+                );
+
+
+            var iqQuestionsJson = 
+                (JArray)
+                (
+                    ((JObject)(
+                    (
+                        (
+                          (JObject)
+                          fields.GetValue("iqQuestions")
+                        )
+                        .GetValue("arrayValue")
+                    )
+                    )).GetValue("values")
+                );
+
+
+            var puzzleQuestionsJson = 
+                (JArray)
+                (
+                    ((JObject)(
+                    (
+                        (
+                          (JObject)
+                          fields.GetValue("puzzleQuestions")
+                        )
+                        .GetValue("arrayValue")
+                    )
+                    )).GetValue("values")
+                );
+
+            for (int i = 0; i < readingQuestionsJson.Count; i++) {
+                var answered = (bool)(((JObject)readingQuestionsJson[i]).GetValue("booleanValue"));
+                readingQuestions[i].answered = answered;
+            }
+            for (int i = 0; i < mathQuestionsJson.Count; i++) {
+                var answered = (bool)(((JObject)mathQuestionsJson[i]).GetValue("booleanValue"));
+                mathQuestions[i].answered = answered;
+            }
+            for (int i = 0; i < iqQuestionsJson.Count; i++) {
+                var answered = (bool)(((JObject)iqQuestionsJson[i]).GetValue("booleanValue"));
+                iqQuestions[i].answered = answered;
+            }
+            for (int i = 0; i < puzzleQuestionsJson.Count; i++) {
+                var answered = (bool)(((JObject)puzzleQuestionsJson[i]).GetValue("booleanValue"));
+                puzzleQuestions[i].answered = answered;
             }
         }
     }
