@@ -14,6 +14,8 @@ public class PressX : MonoBehaviour
     public QuestionType type;
     public int wrongAnswer = 0;
     public Text answerText;
+    public GameObject weapon;
+    public LineRenderer lineRenderer;
 
     void Start()
     {
@@ -91,10 +93,14 @@ public class PressX : MonoBehaviour
             HintController.InitializeBarrels();
             
             inputText.GetComponent<InputField>().onValueChanged.RemoveAllListeners();
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
             pressX.SetActive(false);
             question.SetActive(false);
             inputText.SetActive(false);
+
+             lineRenderer.SetPosition(0, this.gameObject.transform.position); // set the starting point of the line
+ 
+            lineRenderer.SetPosition(1, weapon.transform.position); // set the ending point of the line
         }
         else
         {
