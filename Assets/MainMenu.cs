@@ -22,13 +22,21 @@ public class MainMenu : MonoBehaviour
     public GameObject signUpErrMsg;
     public GameObject loginErrMsg;
 
+    public GameObject loginMenuCanvas;
+
     public string API_KEY;
 
     private static readonly HttpClient client = new HttpClient();
 
     public void PlayGame()
     {
-        //SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+        if (Auth.idToken != null) {
+            SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+        } else {
+             loginMenuCanvas.SetActive(true);
+             this.gameObject.SetActive(false);
+        }
+        
     }
 
     public void QuitGame()
