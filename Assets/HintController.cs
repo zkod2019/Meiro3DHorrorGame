@@ -12,6 +12,7 @@ using UnityEngine.SceneManagement;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 using UnityEngine.Networking;
+
 public enum QuestionType
 {
     Logic,
@@ -196,6 +197,7 @@ public class HintController : MonoBehaviour
             string questionsFirestoreUrl = "https://firestore.googleapis.com/v1/projects/meiro-ip/databases/(default)/documents/questions?pageSize=100";
             var questionsFirestoreResponse = await client.GetAsync(questionsFirestoreUrl);
             var questionsFirestoreResponseString = await questionsFirestoreResponse.Content.ReadAsStringAsync();
+            Debug.Log(questionsFirestoreResponseString);
             var questionsJson = (JArray)JObject.Parse(questionsFirestoreResponseString).GetValue("documents");
             Debug.Log(questionsJson);
             /*
@@ -292,6 +294,9 @@ public class HintController : MonoBehaviour
 
             {
                 fields: {
+                    loops: {
+                        numberValue: 42,
+                    },
                     iqQuestions: {
                         values: [
                             {

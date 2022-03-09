@@ -11,7 +11,9 @@ void Start() {
 
 void Update() {}
 
-    public void QuitGame() {
+    public async void QuitGame() {
+        if (Auth.idToken != null)
+        await GameObject.Find("FirstPersonPlayer").GetComponent<Timer>().DisplayLoop();
         Application.Quit();
     }
 
