@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
@@ -9,7 +10,8 @@ using System.Net;
 using System.Net.Http;
 using UnityEngine.SceneManagement;
 using Newtonsoft.Json.Linq;
-
+using System.Threading.Tasks;
+using UnityEngine.Networking;
 public enum QuestionType
 {
     Logic,
@@ -18,12 +20,14 @@ public enum QuestionType
     Puzzle,
 }
 
-public class QuestionStatus {
+public class QuestionStatus
+{
     public Sprite question;
     public String answer;
     public bool answered;
 
-    public QuestionStatus(Sprite question, String answer, bool answered) {
+    public QuestionStatus(Sprite question, String answer, bool answered)
+    {
         this.question = question;
         this.answer = answer;
         this.answered = answered;
@@ -38,6 +42,44 @@ public class QuestionStatus {
     }
 */
 
+public class UnityWebRequestAwaiter : INotifyCompletion
+{
+    private UnityWebRequestAsyncOperation asyncOp;
+    private Action continuation;
+
+    public UnityWebRequestAwaiter(UnityWebRequestAsyncOperation asyncOp)
+    {
+        this.asyncOp = asyncOp;
+        asyncOp.completed += OnRequestCompleted;
+    }
+
+    public bool IsCompleted { get { return asyncOp.isDone; } }
+
+    public void GetResult() { }
+
+    public void OnCompleted(Action continuation)
+    {
+        this.continuation = continuation;
+    }
+
+    private void OnRequestCompleted(AsyncOperation obj)
+    {
+        continuation();
+    }
+}
+
+public static class ExtensionMethods
+{
+    public static UnityWebRequestAwaiter GetAwaiter(this UnityWebRequestAsyncOperation asyncOp)
+    {
+        return new UnityWebRequestAwaiter(asyncOp);
+    }
+
+    public static string SubstringIdx(this string value, int startIndex, int endIndex)
+    {
+        return value.Substring(startIndex, (endIndex - startIndex + 1));
+    }
+}
 
 public class HintController : MonoBehaviour
 {
@@ -49,8 +91,10 @@ public class HintController : MonoBehaviour
     static bool initial = true;
     private static readonly HttpClient client = new HttpClient();
 
-    public static async void answerQuestion(QuestionType type, int index) {
-        switch (type) {
+    public static async void answerQuestion(QuestionType type, int index)
+    {
+        switch (type)
+        {
             case QuestionType.Logic:
                 iqQuestions[index].answered = true;
                 break;
@@ -64,11 +108,11 @@ public class HintController : MonoBehaviour
                 puzzleQuestions[index].answered = true;
                 break;
         }
-        
+
         string firestoreUrl = $"https://firestore.googleapis.com/v1/projects/meiro-ip/databases/(default)/documents/users/{Auth.username}";
         Debug.Log(firestoreUrl);
-        
-        HintController.InitializeQuestions();
+
+        await HintController.InitializeQuestions();
         var json = $@"
             {{
                 ""fields"": {{
@@ -102,7 +146,7 @@ public class HintController : MonoBehaviour
         {
             Method = new HttpMethod("PATCH"),
             RequestUri = new Uri(firestoreUrl),
-            Headers = { 
+            Headers = {
                 { HttpRequestHeader.Authorization.ToString(), $"Bearer {Auth.idToken}" },
                 { HttpRequestHeader.Accept.ToString(), "application/json" },
             },
@@ -119,8 +163,26 @@ public class HintController : MonoBehaviour
         // }
     }
 
-    public static async void InitializeQuestions() {
-        if (initial) {
+    static async Task<Sprite> spriteFromURL(string url)
+    {
+        UnityWebRequest request = UnityWebRequestTexture.GetTexture(url);
+        await request.SendWebRequest();
+        if (request.isNetworkError || request.isHttpError)
+        {
+            Debug.Log(request.error);
+            return null;
+        }
+        else
+        {
+            var texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
+            return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0, 0));
+        }
+    }
+
+    public static async Task InitializeQuestions()
+    {
+        if (initial)
+        {
             Debug.Log("HintController trigerred");
             initial = false;
 
@@ -131,62 +193,98 @@ public class HintController : MonoBehaviour
 
 
             //   1. Load all the question image textures (and answer texts)
-            Sprite[] iqQuestionSprites = Array.ConvertAll(Resources.LoadAll("iq/questions", typeof(Sprite)), asset => (Sprite)asset);
-            TextAsset[] iqAnswers = Array.ConvertAll(Resources.LoadAll("iq/answers", typeof(TextAsset)), asset => (TextAsset)asset);
-            Sprite[] mathQuestionSprites = Array.ConvertAll(Resources.LoadAll("math/questions", typeof(Sprite)), asset => (Sprite)asset);
-            TextAsset[] mathAnswers = Array.ConvertAll(Resources.LoadAll("math/answers", typeof(TextAsset)), asset => (TextAsset)asset);
-            Sprite[] readingQuestionSprites = Array.ConvertAll(Resources.LoadAll("reading/questions", typeof(Sprite)), asset => (Sprite)asset);
-            TextAsset[] readingAnswers = Array.ConvertAll(Resources.LoadAll("reading/answers", typeof(TextAsset)), asset => (TextAsset)asset);
+            string questionsFirestoreUrl = "https://firestore.googleapis.com/v1/projects/meiro-ip/databases/(default)/documents/questions?pageSize=100";
+            var questionsFirestoreResponse = await client.GetAsync(questionsFirestoreUrl);
+            var questionsFirestoreResponseString = await questionsFirestoreResponse.Content.ReadAsStringAsync();
+            var questionsJson = (JArray)JObject.Parse(questionsFirestoreResponseString).GetValue("documents");
+            Debug.Log(questionsJson);
+            /*
+                {
+                    documents: [
+                        {
+                            fields: {
+                                answer: {
+                                    stringValue: '',
+                                },
+                                question: {
+                                    stringValue: '',
+                                },
+                            }
+                        }
+                    ]   
+                }
+            */
 
-            Sprite[] puzzleQuestionSprites = Array.ConvertAll(Resources.LoadAll("tPuzzles/questions", typeof(Sprite)), asset => (Sprite)asset);
-            TextAsset[] puzzleAnswers = Array.ConvertAll(Resources.LoadAll("tPuzzles/answers", typeof(TextAsset)), asset => (TextAsset)asset);
+            List<Tuple<string, string>> iqQuestionsRaw = new List<Tuple<string, string>>();
+            List<Tuple<string, string>> mathQuestionsRaw = new List<Tuple<string, string>>();
+            List<Tuple<string, string>> readingQuestionsRaw = new List<Tuple<string, string>>();
+            List<Tuple<string, string>> puzzleQuestionsRaw = new List<Tuple<string, string>>();
 
-            Array.Sort(iqQuestionSprites, (a, b) =>
-                Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(a))) - Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(b))));
-            Array.Sort(iqAnswers, (a, b) =>
-                Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(a))) - Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(b))));
-
-            Array.Sort(mathQuestionSprites, (a, b) =>
-                Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(a))) - Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(b))));
-            Array.Sort(mathAnswers, (a, b) =>
-                Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(a))) - Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(b))));
-
-            Array.Sort(readingQuestionSprites, (a, b) =>
-                Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(a))) - Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(b))));
-            Array.Sort(readingAnswers, (a, b) =>
-                Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(a))) - Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(b))));
-
-            Array.Sort(puzzleQuestionSprites, (a, b) =>
-                Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(a))) - Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(b))));
-            Array.Sort(puzzleAnswers, (a, b) =>
-                Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(a))) - Int32.Parse(Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(b))));
-            
-            iqQuestions = new QuestionStatus[iqQuestionSprites.Length];
-            for (int i = 0; i < iqQuestionSprites.Length; i++)
+            Debug.Log(questionsJson.Count);
+            for (int i = 0; i < questionsJson.Count; i++)
             {
-                iqQuestions[i] = new QuestionStatus(iqQuestionSprites[i], iqAnswers[i].text, false);
-            }
-            mathQuestions = new QuestionStatus[mathQuestionSprites.Length];
-            for (int i = 0; i < mathQuestionSprites.Length; i++)
-            {
-                mathQuestions[i] = new QuestionStatus(mathQuestionSprites[i], mathAnswers[i].text, false);
-            }
-            readingQuestions = new QuestionStatus[readingQuestionSprites.Length];
-            for (int i = 0; i < readingQuestionSprites.Length; i++)
-            {
-                readingQuestions[i] = new QuestionStatus(readingQuestionSprites[i], readingAnswers[i].text, false);
-            }
-            puzzleQuestions = new QuestionStatus[puzzleQuestionSprites.Length];
-            for (int i = 0; i < puzzleQuestionSprites.Length; i++)
-            {
-                puzzleQuestions[i] = new QuestionStatus(puzzleQuestionSprites[i], puzzleAnswers[i].text, false);
+                var questionJsonFields = (JObject)(((JObject)questionsJson[i]).GetValue("fields"));
+                var questionFileName = (string)(((JObject)questionJsonFields.GetValue("question")).GetValue("stringValue"));
+                var answer = (string)(((JObject)questionJsonFields.GetValue("answer")).GetValue("stringValue"));
+                if (questionFileName.StartsWith("iq"))
+                {
+                    iqQuestionsRaw.Add(Tuple.Create(questionFileName, answer));
+                }
+                else if (questionFileName.StartsWith("math"))
+                {
+                    mathQuestionsRaw.Add(Tuple.Create(questionFileName, answer));
+                }
+                else if (questionFileName.StartsWith("reading"))
+                {
+                    readingQuestionsRaw.Add(Tuple.Create(questionFileName, answer));
+                }
+                else if (questionFileName.StartsWith("puzzle"))
+                {
+                    puzzleQuestionsRaw.Add(Tuple.Create(questionFileName, answer));
+                }
             }
 
-        
+            iqQuestionsRaw.Sort((a, b) => Int32.Parse(a.Item1.SubstringIdx("iq-questions/".Length, a.Item1.Length - 5)) - Int32.Parse(b.Item1.SubstringIdx("iq-questions/".Length, b.Item1.Length - 5)));
+            mathQuestionsRaw.Sort((a, b) => Int32.Parse(a.Item1.SubstringIdx("math-questions/".Length, a.Item1.Length - 5)) - Int32.Parse(b.Item1.SubstringIdx("math-questions/".Length, b.Item1.Length - 5)));
+            readingQuestionsRaw.Sort((a, b) => Int32.Parse(a.Item1.SubstringIdx("reading-questions/".Length, a.Item1.Length - 5)) - Int32.Parse(b.Item1.SubstringIdx("reading-questions/".Length, b.Item1.Length - 5)));
+            puzzleQuestionsRaw.Sort((a, b) => Int32.Parse(a.Item1.SubstringIdx("puzzle-questions/".Length, a.Item1.Length - 5)) - Int32.Parse(b.Item1.SubstringIdx("puzzle-questions/".Length, b.Item1.Length - 5)));
+
+            Debug.Log(iqQuestionsRaw.Count);
+            Debug.Log(mathQuestionsRaw.Count);
+            Debug.Log(readingQuestionsRaw.Count);
+            Debug.Log(puzzleQuestionsRaw.Count);
+
+            HintController.iqQuestions = new QuestionStatus[iqQuestionsRaw.Count];
+            for (int i = 0; i < iqQuestionsRaw.Count; i++)
+            {
+                Debug.Log($"https://storage.googleapis.com/meiro-ip.appspot.com/{iqQuestionsRaw[i].Item1}");
+                HintController.iqQuestions[i] = new QuestionStatus(await spriteFromURL($"https://storage.googleapis.com/meiro-ip.appspot.com/{iqQuestionsRaw[i].Item1}"), iqQuestionsRaw[i].Item2, false);
+            }
+            HintController.mathQuestions = new QuestionStatus[mathQuestionsRaw.Count];
+            for (int i = 0; i < mathQuestionsRaw.Count; i++)
+            {
+                Debug.Log($"https://storage.googleapis.com/meiro-ip.appspot.com/{mathQuestionsRaw[i].Item1}");
+                HintController.mathQuestions[i] = new QuestionStatus(await spriteFromURL($"https://storage.googleapis.com/meiro-ip.appspot.com/{mathQuestionsRaw[i].Item1}"), mathQuestionsRaw[i].Item2, false);
+            }
+            HintController.readingQuestions = new QuestionStatus[readingQuestionsRaw.Count];
+            for (int i = 0; i < readingQuestionsRaw.Count; i++)
+            {
+                Debug.Log($"https://storage.googleapis.com/meiro-ip.appspot.com/{readingQuestionsRaw[i].Item1}");
+                HintController.readingQuestions[i] = new QuestionStatus(await spriteFromURL($"https://storage.googleapis.com/meiro-ip.appspot.com/{readingQuestionsRaw[i].Item1}"), readingQuestionsRaw[i].Item2, false);
+            }
+            HintController.puzzleQuestions = new QuestionStatus[puzzleQuestionsRaw.Count];
+            for (int i = 0; i < puzzleQuestionsRaw.Count; i++)
+            {
+                Debug.Log($"https://storage.googleapis.com/meiro-ip.appspot.com/{puzzleQuestionsRaw[i].Item1}");
+                HintController.puzzleQuestions[i] = new QuestionStatus(await spriteFromURL($"https://storage.googleapis.com/meiro-ip.appspot.com/{puzzleQuestionsRaw[i].Item1}"), puzzleQuestionsRaw[i].Item2, false);
+            }
+
+            Debug.Log("all questions loaded");
+
             string firestoreUrl = $"https://firestore.googleapis.com/v1/projects/meiro-ip/databases/(default)/documents/users/{Auth.username}";
 
             var firestoreResponse = await client.GetAsync(firestoreUrl);
-            var firestoreResponseString = await         firestoreResponse.Content.ReadAsStringAsync();
+            var firestoreResponseString = await firestoreResponse.Content.ReadAsStringAsync();
             var json = JObject.Parse(firestoreResponseString);
             Debug.Log(json);
 
@@ -209,8 +307,8 @@ public class HintController : MonoBehaviour
             var fields = (JObject)json.GetValue("fields");
             Debug.Log(fields);
             Debug.Log((JObject)fields.GetValue("readingQuestions"));
-            
-            var readingQuestionsJson = 
+
+            var readingQuestionsJson =
                 (JArray)
                 (
                     ((JObject)(
@@ -225,7 +323,7 @@ public class HintController : MonoBehaviour
                 );
             Debug.Log(readingQuestionsJson);
 
-            var mathQuestionsJson = 
+            var mathQuestionsJson =
                 (JArray)
                 (
                     ((JObject)(
@@ -240,7 +338,7 @@ public class HintController : MonoBehaviour
                 );
 
 
-            var iqQuestionsJson = 
+            var iqQuestionsJson =
                 (JArray)
                 (
                     ((JObject)(
@@ -255,7 +353,7 @@ public class HintController : MonoBehaviour
                 );
 
 
-            var puzzleQuestionsJson = 
+            var puzzleQuestionsJson =
                 (JArray)
                 (
                     ((JObject)(
@@ -269,26 +367,33 @@ public class HintController : MonoBehaviour
                     )).GetValue("values")
                 );
 
-            for (int i = 0; i < readingQuestionsJson.Count; i++) {
+            for (int i = 0; i < readingQuestionsJson.Count; i++)
+            {
                 var answered = (bool)(((JObject)readingQuestionsJson[i]).GetValue("booleanValue"));
                 readingQuestions[i].answered = answered;
             }
-            for (int i = 0; i < mathQuestionsJson.Count; i++) {
+            for (int i = 0; i < mathQuestionsJson.Count; i++)
+            {
                 var answered = (bool)(((JObject)mathQuestionsJson[i]).GetValue("booleanValue"));
                 mathQuestions[i].answered = answered;
             }
-            for (int i = 0; i < iqQuestionsJson.Count; i++) {
+            for (int i = 0; i < iqQuestionsJson.Count; i++)
+            {
                 var answered = (bool)(((JObject)iqQuestionsJson[i]).GetValue("booleanValue"));
                 iqQuestions[i].answered = answered;
             }
-            for (int i = 0; i < puzzleQuestionsJson.Count; i++) {
+            for (int i = 0; i < puzzleQuestionsJson.Count; i++)
+            {
                 var answered = (bool)(((JObject)puzzleQuestionsJson[i]).GetValue("booleanValue"));
                 puzzleQuestions[i].answered = answered;
             }
         }
     }
 
-    public static void InitializeBarrels() {
+    public static void InitializeBarrels()
+    {
+        Debug.Log("initalizing barrels...");
+
         GameObject[] barrels = GameObject.FindGameObjectsWithTag("barrel");
         GameObject[] logicBarrels = barrels.Where(b => b.GetComponent<PressX>().type == QuestionType.Logic).ToArray();
         GameObject[] mathBarrels = barrels.Where(b => b.GetComponent<PressX>().type == QuestionType.Math).ToArray();
@@ -314,7 +419,8 @@ public class HintController : MonoBehaviour
         }
     }
 
-    public static void InitializeCrates() {
+    public static void InitializeCrates()
+    {
         GameObject[] crates = GameObject.FindGameObjectsWithTag("crate");
         GameObject[] puzzleCrates = crates.Where(b => b.GetComponent<PressSpace>().type == QuestionType.Puzzle).ToArray();
 
@@ -324,10 +430,11 @@ public class HintController : MonoBehaviour
             crateScript.questionStatus = HintController.puzzleQuestions[i];
         }
     }
-    
-    void Start()
+
+    async void Start()
     {
-        HintController.InitializeQuestions();
+        await HintController.InitializeQuestions();
+        Debug.Log("finished initializing questions");
         HintController.InitializeBarrels();
         HintController.InitializeCrates();
     }

@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour
     public GameObject signUpPassword;
     public GameObject loginUser;
     public GameObject loginPassword;
-    
+
     public GameObject signUpErrMsg;
     public GameObject loginErrMsg;
 
@@ -26,32 +26,37 @@ public class MainMenu : MonoBehaviour
 
     private static readonly HttpClient client = new HttpClient();
 
-    public void PlayGame(){
+    public void PlayGame()
+    {
         //SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
     }
 
-    public void QuitGame(){
+    public void QuitGame()
+    {
         Debug.Log("Game Quit.");
         Application.Quit();
     }
 
-    public void ReturnMenu(){
-        SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex - 1);
+    public void ReturnMenu()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
-    void Start() {
+    void Start()
+    {
         API_KEY = Environment.GetEnvironmentVariable("FIREBASE_API_KEY");
         Button btnSign = signUpBtn.GetComponent<Button>();
-		btnSign.onClick.AddListener(SignUp);
+        btnSign.onClick.AddListener(SignUp);
 
         Button btnLog = loginBtn.GetComponent<Button>();
-		btnLog.onClick.AddListener(Login);
+        btnLog.onClick.AddListener(Login);
 
         signUpErrMsg.SetActive(false);
     }
 
-   
-    public async void SignUp(){
+
+    public async void SignUp()
+    {
         signUpErrMsg.SetActive(false);
 
         string url = $"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={API_KEY}";
@@ -86,13 +91,14 @@ public class MainMenu : MonoBehaviour
         Debug.Log(responseJson);
         Debug.Log(response.StatusCode);
 
-        if (response.StatusCode == HttpStatusCode.OK) {
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
             Auth.username = username;
             Auth.idToken = (String)responseJson.GetValue("idToken");
 
             string firestoreUrl = $"https://firestore.googleapis.com/v1/projects/meiro-ip/databases/(default)/documents/users?documentId={username}";
 
-            HintController.InitializeQuestions();
+            await HintController.InitializeQuestions();
             var initialJson = $@"
                 {{
                     ""fields"": {{
@@ -126,7 +132,7 @@ public class MainMenu : MonoBehaviour
             {
                 Method = HttpMethod.Post,
                 RequestUri = new Uri(firestoreUrl),
-                Headers = { 
+                Headers = {
                     { HttpRequestHeader.Authorization.ToString(), $"Bearer {Auth.idToken}" },
                     { HttpRequestHeader.Accept.ToString(), "application/json" },
                 },
@@ -136,10 +142,13 @@ public class MainMenu : MonoBehaviour
             var firestoreResponse = await client.SendAsync(firestoreSetReq);
             var firestoreResponseString = await firestoreResponse.Content.ReadAsStringAsync();
 
-            if (firestoreResponse.StatusCode == HttpStatusCode.OK) {
-                SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+            if (firestoreResponse.StatusCode == HttpStatusCode.OK)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
-        } else {
+        }
+        else
+        {
             var errorMessage = ((JObject)responseJson.GetValue("error")).GetValue("message").ToObject<string>();
 
             Debug.Log(errorMessage);
@@ -148,7 +157,8 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public async void Login(){
+    public async void Login()
+    {
         loginErrMsg.SetActive(false);
 
         string url = $"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={API_KEY}";
@@ -171,11 +181,14 @@ public class MainMenu : MonoBehaviour
         Debug.Log(responseJson);
         Debug.Log(response.StatusCode);
 
-        if (response.StatusCode == HttpStatusCode.OK) {
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
             Auth.username = username;
             Auth.idToken = (String)responseJson.GetValue("idToken");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        } else {
+        }
+        else
+        {
             var errorMessage = ((JObject)responseJson.GetValue("error")).GetValue("message").ToObject<string>();
 
             Debug.Log(errorMessage);
