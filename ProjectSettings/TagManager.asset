@@ -11,6 +11,7 @@ TagManager:
   - winner
   - exit
   - result
+  - loading
   layers:
   - Default
   - TransparentFX

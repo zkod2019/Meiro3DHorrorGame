@@ -13,6 +13,7 @@ using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 using UnityEngine.Networking;
 
+
 public enum QuestionType
 {
     Logic,
@@ -88,6 +89,9 @@ public class HintController : MonoBehaviour
     public static QuestionStatus[] mathQuestions;
     public static QuestionStatus[] readingQuestions;
     public static QuestionStatus[] puzzleQuestions;
+    public static GameObject loadingScreen;
+
+    // public GameObject loadingScreen = new GameObject();
 
     static bool initial = true;
     private static readonly HttpClient client = new HttpClient();
@@ -181,9 +185,10 @@ public class HintController : MonoBehaviour
     }
 
     public static async Task InitializeQuestions()
-    {
+    {   
         if (initial)
         {
+            loadingScreen.SetActive(true);
             Debug.Log("HintController trigerred");
             initial = false;
 
@@ -392,6 +397,8 @@ public class HintController : MonoBehaviour
                 var answered = (bool)(((JObject)puzzleQuestionsJson[i]).GetValue("booleanValue"));
                 puzzleQuestions[i].answered = answered;
             }
+            loadingScreen.SetActive(false);
+            Debug.Log("closed loading screen");
         }
     }
 
@@ -438,6 +445,9 @@ public class HintController : MonoBehaviour
 
     async void Start()
     {
+        Debug.Log("helooo?");
+        HintController.loadingScreen = GameObject.Find("Canvas").transform.GetChild(6).transform.GetChild(4).gameObject;
+        Debug.Log(loadingScreen);
         await HintController.InitializeQuestions();
         Debug.Log("finished initializing questions");
         HintController.InitializeBarrels();
