@@ -29,7 +29,7 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     async void Start()
     {
-        timeRemaining = 30; //random.Next(600,1800);
+        timeRemaining = 60; //random.Next(600,1800);
         timerIsRunning = true;
         string firestoreUrl = $"https://firestore.googleapis.com/v1/projects/meiro-ip/databases/(default)/documents/users/{Auth.username}";
 

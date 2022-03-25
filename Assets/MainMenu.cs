@@ -106,9 +106,44 @@ public class MainMenu : MonoBehaviour
             Auth.username = username;
             Auth.idToken = (String)responseJson.GetValue("idToken");
 
+            string questionsFirestoreUrl = "https://firestore.googleapis.com/v1/projects/meiro-ip/databases/(default)/documents/questions?pageSize=100";
+            var questionsFirestoreResponse = await client.GetAsync(questionsFirestoreUrl);
+            var questionsFirestoreResponseString = await questionsFirestoreResponse.Content.ReadAsStringAsync();
+            Debug.Log(questionsFirestoreResponseString);
+            var questionsJson = (JArray)JObject.Parse(questionsFirestoreResponseString).GetValue("documents");
+            Debug.Log(questionsJson);
+
+            List<Tuple<string, string>> iqQuestionsRaw = new List<Tuple<string, string>>();
+            List<Tuple<string, string>> mathQuestionsRaw = new List<Tuple<string, string>>();
+            List<Tuple<string, string>> readingQuestionsRaw = new List<Tuple<string, string>>();
+            List<Tuple<string, string>> puzzleQuestionsRaw = new List<Tuple<string, string>>();
+
+            Debug.Log(questionsJson.Count);
+            for (int i = 0; i < questionsJson.Count; i++)
+            {
+                var questionJsonFields = (JObject)(((JObject)questionsJson[i]).GetValue("fields"));
+                var questionFileName = (string)(((JObject)questionJsonFields.GetValue("question")).GetValue("stringValue"));
+                var answer = (string)(((JObject)questionJsonFields.GetValue("answer")).GetValue("stringValue"));
+                if (questionFileName.StartsWith("iq"))
+                {
+                    iqQuestionsRaw.Add(Tuple.Create(questionFileName, answer));
+                }
+                else if (questionFileName.StartsWith("math"))
+                {
+                    mathQuestionsRaw.Add(Tuple.Create(questionFileName, answer));
+                }
+                else if (questionFileName.StartsWith("reading"))
+                {
+                    readingQuestionsRaw.Add(Tuple.Create(questionFileName, answer));
+                }
+                else if (questionFileName.StartsWith("puzzle"))
+                {
+                    puzzleQuestionsRaw.Add(Tuple.Create(questionFileName, answer));
+                }
+            }
+
             string firestoreUrl = $"https://firestore.googleapis.com/v1/projects/meiro-ip/databases/(default)/documents/users?documentId={username}";
 
-            await HintController.InitializeQuestions();
             var initialJson = $@"
                 {{
                     ""fields"": {{
@@ -117,22 +152,22 @@ public class MainMenu : MonoBehaviour
                         }},
                         ""iqQuestions"": {{
                             ""arrayValue"": {{
-                                ""values"": [{String.Join(",", Array.ConvertAll(HintController.iqQuestions, _ => $@"{{""booleanValue"": false}}"))}]
+                                ""values"": [{String.Join(",", Array.ConvertAll(iqQuestionsRaw.ToArray(), _ => $@"{{""booleanValue"": false}}"))}]
                             }}
                         }}, 
                         ""mathQuestions"": {{
                             ""arrayValue"": {{
-                                ""values"": [{String.Join(",", Array.ConvertAll(HintController.mathQuestions, _ => $@"{{""booleanValue"": false}}"))}]
+                                ""values"": [{String.Join(",", Array.ConvertAll(mathQuestionsRaw.ToArray(), _ => $@"{{""booleanValue"": false}}"))}]
                             }}
                         }},
                         ""readingQuestions"": {{
                             ""arrayValue"": {{
-                                ""values"": [{String.Join(",", Array.ConvertAll(HintController.readingQuestions, _ => $@"{{""booleanValue"": false}}"))}]
+                                ""values"": [{String.Join(",", Array.ConvertAll(readingQuestionsRaw.ToArray(), _ => $@"{{""booleanValue"": false}}"))}]
                             }}
                         }},
                         ""puzzleQuestions"": {{
                             ""arrayValue"": {{
-                                ""values"": [{String.Join(",", Array.ConvertAll(HintController.puzzleQuestions, _ => $@"{{""booleanValue"": false}}"))}]
+                                ""values"": [{String.Join(",", Array.ConvertAll(puzzleQuestionsRaw.ToArray(), _ => $@"{{""booleanValue"": false}}"))}]
                             }}
                         }}
                     }}
@@ -151,6 +186,7 @@ public class MainMenu : MonoBehaviour
 
             var firestoreResponse = await client.SendAsync(firestoreSetReq);
             var firestoreResponseString = await firestoreResponse.Content.ReadAsStringAsync();
+            Debug.Log(firestoreResponseString);
 
             if (firestoreResponse.StatusCode == HttpStatusCode.OK)
             {

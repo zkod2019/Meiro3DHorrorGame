@@ -880,6 +880,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!136 &24123046
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3193,6 +3200,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!65 &162742507
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4171,6 +4185,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!65 &204170009
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4490,6 +4511,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!136 &217118473
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4732,6 +4760,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!136 &219610862
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5404,6 +5439,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!65 &248222989
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6564,6 +6606,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!65 &311172840
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6693,6 +6742,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!136 &312361877
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7487,6 +7543,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!136 &361530672
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8163,6 +8226,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!136 &418649223
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8387,6 +8457,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!136 &435261794
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9705,6 +9782,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!65 &487234840
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13254,6 +13338,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!65 &708110458
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17228,6 +17319,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!65 &951364771
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18015,19 +18113,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 786880103af4d484e8f0a5e965873655, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 56.18
+      value: -54.24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 786880103af4d484e8f0a5e965873655, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -42.83
+      value: -42.25
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 786880103af4d484e8f0a5e965873655, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.75
+      value: 46.24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 786880103af4d484e8f0a5e965873655, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 786880103af4d484e8f0a5e965873655, type: 3}
       propertyPath: m_LocalRotation.x
@@ -18035,7 +18133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 786880103af4d484e8f0a5e965873655, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 786880103af4d484e8f0a5e965873655, type: 3}
       propertyPath: m_LocalRotation.z
@@ -18047,7 +18145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 786880103af4d484e8f0a5e965873655, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 786880103af4d484e8f0a5e965873655, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -19510,6 +19608,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!65 &1112663970
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20833,6 +20938,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!65 &1163874501
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21057,6 +21169,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!65 &1205196693
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22349,6 +22468,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!65 &1274543016
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22858,6 +22984,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!136 &1298368285
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -22987,6 +23120,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!65 &1301374726
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24793,6 +24933,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!136 &1397606161
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -25635,6 +25782,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!136 &1462659101
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -27017,6 +27171,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!136 &1523032659
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -28499,6 +28660,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!136 &1644811395
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -28628,6 +28796,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!136 &1654624744
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -31262,6 +31437,89 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804071382}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1808025566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1808025569}
+  - component: {fileID: 1808025568}
+  - component: {fileID: 1808025567}
+  m_Layer: 0
+  m_Name: Camera2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!81 &1808025567
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808025566}
+  m_Enabled: 0
+--- !u!20 &1808025568
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808025566}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &1808025569
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808025566}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: -3.62, y: 0, z: 106.61}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 59
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!1001 &1836683005
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31612,6 +31870,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 552488273}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!65 &1853746141
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33540,6 +33805,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!65 &2008154149
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34620,6 +34892,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!65 &2052741447
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35073,6 +35352,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!65 &2061120111
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36041,6 +36327,13 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
+  choiceA: {fileID: 0}
+  choiceB: {fileID: 0}
+  choiceC: {fileID: 0}
+  choiceD: {fileID: 0}
+  choiceE: {fileID: 0}
+  choiceF: {fileID: 0}
+  choiceG: {fileID: 0}
 --- !u!65 &2137206051
 BoxCollider:
   m_ObjectHideFlags: 0

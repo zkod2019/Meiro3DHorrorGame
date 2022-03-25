@@ -16,6 +16,13 @@ public class PressX : MonoBehaviour
     public Text answerText;
     public GameObject weapon;
     public LineRenderer lineRenderer;
+    public Button choiceA;
+    public GameObject choiceB;
+    public GameObject choiceC;
+    public GameObject choiceD;
+    public GameObject choiceE;
+    public GameObject choiceF;
+    public GameObject choiceG;
 
     void Start()
     {
@@ -24,16 +31,19 @@ public class PressX : MonoBehaviour
         pressX.SetActive(false);
         question.SetActive(false);
         inputText.SetActive(false);
+        //choiceA.SetActive(false); choiceB.SetActive(false); choiceC.SetActive(false); choiceD.SetActive(false); choiceE.SetActive(false); choiceF.SetActive(false); choiceG.SetActive(false);
     }
 
     void OnTriggerEnter(Collider player)
     {
         if (!this.questionStatus.answered && player.gameObject.tag == "Player")
         {
+            //Button optA = choiceA.GetComponent<Button>();
             inputText.GetComponent<InputField>().text = "";
             question.GetComponent<Image>().sprite = questionStatus.question;
             pressX.SetActive(true);
             inputText.GetComponent<InputField>().onValueChanged.AddListener(delegate { ValueChangeCheck(); });
+            //optA.GetComponent<Button>().onClick.AddListener(delegate { ValueChangeCheck(); });
         }
     }
 
