@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using TMPro;
+
 
 public class PressX : MonoBehaviour
 {
@@ -16,13 +18,12 @@ public class PressX : MonoBehaviour
     public Text answerText;
     public GameObject weapon;
     public LineRenderer lineRenderer;
-    public Button choiceA;
-    public GameObject choiceB;
-    public GameObject choiceC;
-    public GameObject choiceD;
-    public GameObject choiceE;
-    public GameObject choiceF;
-    public GameObject choiceG;
+    public GameObject[] choices;
+
+    void Awake() {
+    choices =  new GameObject[7];
+
+    }
 
     void Start()
     {
@@ -30,48 +31,32 @@ public class PressX : MonoBehaviour
 
         pressX.SetActive(false);
         question.SetActive(false);
-        inputText.SetActive(false);
-        //choiceA.SetActive(false); choiceB.SetActive(false); choiceC.SetActive(false); choiceD.SetActive(false); choiceE.SetActive(false); choiceF.SetActive(false); choiceG.SetActive(false);
+
+        Canvas canvas = (Canvas)FindObjectOfType(typeof(Canvas));
+
+        for (int i = 0; i < 7; i++) {
+            choices[i] = canvas.transform.GetChild(i+8).gameObject;
+            choices[i].SetActive(false);
+        }
     }
 
     void OnTriggerEnter(Collider player)
     {
         if (!this.questionStatus.answered && player.gameObject.tag == "Player")
         {
-            //Button optA = choiceA.GetComponent<Button>();
-            inputText.GetComponent<InputField>().text = "";
             question.GetComponent<Image>().sprite = questionStatus.question;
             pressX.SetActive(true);
-            inputText.GetComponent<InputField>().onValueChanged.AddListener(delegate { ValueChangeCheck(); });
-            //optA.GetComponent<Button>().onClick.AddListener(delegate { ValueChangeCheck(); });
+            Debug.Log(choices.Length);
+            for (int i = 0; i < 7; i++) {
+                Button btn = choices[i].GetComponent<Button>();
+                btn.onClick.AddListener(delegate { OnButtonPress(btn); });
+            }
         }
     }
 
-    void OnTriggerExit(Collider player)
-    {
-        if (player.gameObject.tag == "Player")
-        {
-            question.GetComponent<Image>().sprite = null;
-            inputText.GetComponent<InputField>().text = "";
-
-            pressX.SetActive(false);
-            question.SetActive(false);
-            inputText.SetActive(false);
-
-            inputText.GetComponent<InputField>().onValueChanged.RemoveAllListeners();
-        }
-    }
-
-    void HideAnswerText() {
-        answerText.enabled = false;
-    }
-    void ShowAnswerText() {
-        answerText.enabled = true;
-    }
-
-    public void ValueChangeCheck()
-    {
-        userAnswer = inputText.GetComponent<InputField>().text;
+    void OnButtonPress(Button pressed) {
+        Debug.Log(pressed);
+         userAnswer = pressed.GetComponentInChildren<TMP_Text>().text;
         Debug.Log(userAnswer);
         Debug.Log(this.questionStatus.answer);
         if (userAnswer == this.questionStatus.answer)
@@ -102,11 +87,13 @@ public class PressX : MonoBehaviour
 
             HintController.InitializeBarrels();
             
-            inputText.GetComponent<InputField>().onValueChanged.RemoveAllListeners();
             //this.gameObject.SetActive(false);
             pressX.SetActive(false);
             question.SetActive(false);
-            inputText.SetActive(false);
+            for (int i = 0; i < 7; i++) {
+                    choices[i].SetActive(false);
+                    choices[i].GetComponent<Button>().onClick.RemoveAllListeners();
+                }
 
             if (weapon != null)
         {
@@ -148,13 +135,42 @@ public class PressX : MonoBehaviour
                 Invoke("HideAnswerText", 2);
             }
             if (wrongAnswer == 3){
-                inputText.GetComponent<InputField>().onValueChanged.RemoveAllListeners();
+                
                 this.gameObject.SetActive(false);
                 pressX.SetActive(false);
                 question.SetActive(false);
-                inputText.SetActive(false);
+        
+                 for (int i = 0; i < 7; i++) {
+                    choices[i].SetActive(false);
+                    choices[i].GetComponent<Button>().onClick.RemoveAllListeners();
+                }
             }
         }
+        // Debug.Log(pressed.transform.GetChild(0).GetComponent<Text>().text);
+    }
+
+    void OnTriggerExit(Collider player)
+    {
+        if (player.gameObject.tag == "Player")
+        {
+            question.GetComponent<Image>().sprite = null;
+            inputText.GetComponent<InputField>().text = "";
+
+            pressX.SetActive(false);
+            question.SetActive(false);
+
+                    for (int i = 0; i < 7; i++) {
+            choices[i].SetActive(false);
+            choices[i].GetComponent<Button>().onClick.RemoveAllListeners();
+        }
+        }
+    }
+
+    void HideAnswerText() {
+        answerText.enabled = false;
+    }
+    void ShowAnswerText() {
+        answerText.enabled = true;
     }
 
     void Update()
@@ -162,7 +178,10 @@ public class PressX : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && pressX.activeSelf)
         {
             question.SetActive(true);
-            inputText.SetActive(true);
+                    for (int i = 0; i < 7; i++) {
+            choices[i].SetActive(true);
+        }
+            //inputText.SetActive(true);
             pressX.SetActive(false);
         }
     }

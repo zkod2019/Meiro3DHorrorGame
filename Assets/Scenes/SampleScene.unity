@@ -880,13 +880,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!136 &24123046
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3200,13 +3194,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!65 &162742507
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3385,19 +3373,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 166471847}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1099480419}
-        m_TargetAssemblyTypeName: MenuQuit, Assembly-CSharp
-        m_MethodName: GoMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &166471847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4185,13 +4161,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!65 &204170009
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4511,13 +4481,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!136 &217118473
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4760,13 +4724,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!136 &219610862
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5286,19 +5244,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 239244770}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1099480419}
-        m_TargetAssemblyTypeName: MenuQuit, Assembly-CSharp
-        m_MethodName: GoMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &239244770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5439,13 +5385,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!65 &248222989
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6606,13 +6546,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!65 &311172840
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6742,13 +6676,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!136 &312361877
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7543,13 +7471,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!136 &361530672
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8226,13 +8148,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!136 &418649223
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8457,13 +8373,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!136 &435261794
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9782,13 +9692,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!65 &487234840
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13338,13 +13242,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!65 &708110458
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16325,19 +16223,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 890039944}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1099480419}
-        m_TargetAssemblyTypeName: MenuQuit, Assembly-CSharp
-        m_MethodName: GoMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &890039944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17319,13 +17205,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!65 &951364771
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19608,13 +19488,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!65 &1112663970
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20938,13 +20812,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!65 &1163874501
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21169,13 +21037,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!65 &1205196693
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22468,13 +22330,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!65 &1274543016
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22984,13 +22840,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!136 &1298368285
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -23120,13 +22970,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!65 &1301374726
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24933,13 +24777,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!136 &1397606161
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -25049,19 +24887,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1413022661}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1099480419}
-        m_TargetAssemblyTypeName: MenuQuit, Assembly-CSharp
-        m_MethodName: GoMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1413022661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25782,13 +25608,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!136 &1462659101
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -27171,13 +26991,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!136 &1523032659
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -28660,13 +28474,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!136 &1644811395
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -28796,13 +28604,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!136 &1654624744
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -30745,19 +30547,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1769115986}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1099480419}
-        m_TargetAssemblyTypeName: MenuQuit, Assembly-CSharp
-        m_MethodName: GoMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1769115986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30973,19 +30763,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1776444112}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1099480419}
-        m_TargetAssemblyTypeName: MenuQuit, Assembly-CSharp
-        m_MethodName: GoMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1776444112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31870,13 +31648,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 552488273}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!65 &1853746141
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32201,19 +31973,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1867950618}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1099480419}
-        m_TargetAssemblyTypeName: MenuQuit, Assembly-CSharp
-        m_MethodName: GoMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1867950618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33805,13 +33565,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!65 &2008154149
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34892,13 +34646,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!65 &2052741447
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35352,13 +35100,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!65 &2061120111
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36327,13 +36069,7 @@ MonoBehaviour:
   answerText: {fileID: 467679997}
   weapon: {fileID: 0}
   lineRenderer: {fileID: 1338783025}
-  choiceA: {fileID: 0}
-  choiceB: {fileID: 0}
-  choiceC: {fileID: 0}
-  choiceD: {fileID: 0}
-  choiceE: {fileID: 0}
-  choiceF: {fileID: 0}
-  choiceG: {fileID: 0}
+  choices: []
 --- !u!65 &2137206051
 BoxCollider:
   m_ObjectHideFlags: 0
