@@ -14,6 +14,7 @@ public class PlayerInventory : MonoBehaviour
     public Button resultsBtn;
     public Text resultText;
     public Text totalAnswered;
+    public Text improvement;
 
     public void Add(Collectable obj) {
         inventory.Add(obj);
@@ -92,6 +93,14 @@ public class PlayerInventory : MonoBehaviour
             totalAnswered.text = $"Out of all 30 IQ questions, you answered: {totalScore}\nYour rating is: Low";
         }else if(totalScore >= 0 && totalScore <= 2){
             totalAnswered.text = $"Out of all 30 IQ questions, you answered: {totalScore}\nYour rating is: Very Low";
+        }
+
+        if (correctIq < correctMath && correctIq < correctReading){
+            improvement.text = $"The score on your pattern questions is low! Practice them more!";
+        }else if (correctMath < correctIq && correctMath < correctReading){
+            improvement.text = $"The score on your math questions is low! Practice them more!";
+        }else if (correctReading < correctMath && correctReading < correctIq){
+            improvement.text = $"The score on your English questions is low! Practice them more!";
         }
 
         resultText.text = $"Pattern questions answered: {correctIq}/{HintController.iqQuestions.Length}\nMath questions answered: {correctMath}/{HintController.mathQuestions.Length}\nReading questions answered: {correctReading}/{HintController.readingQuestions.Length}\nPuzzle questions answered: {correctPuzzle}/{HintController.puzzleQuestions.Length}";
