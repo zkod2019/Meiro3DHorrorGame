@@ -15,6 +15,7 @@ public class PlayerInventory : MonoBehaviour
     public Text resultText;
     public Text totalAnswered;
     public Text improvement;
+    public Text puzzleImprovement;
 
     public void Add(Collectable obj) {
         inventory.Add(obj);
@@ -25,10 +26,10 @@ public class PlayerInventory : MonoBehaviour
             GetComponentInChildren<Text>().text += collectable.collectableName + ", ";
             count++;
 
-            if (count==1){
-                    winnerCanvas.SetActive(true);
-                    resultsBtn.onClick.AddListener(PlayerResults);
-            }
+            // if (count==1){
+            //         winnerCanvas.SetActive(true);
+            //         resultsBtn.onClick.AddListener(PlayerResults);
+            // }
             if (count==8){
                 Debug.Log("All Obj Collected");
                 exitMaze.SetActive(false);
@@ -95,12 +96,26 @@ public class PlayerInventory : MonoBehaviour
             totalAnswered.text = $"Out of all 30 IQ questions, you answered: {totalScore}\nYour rating is: Very Low";
         }
 
+        if (correctPuzzle >= 8 && correctPuzzle <= 10){
+            puzzleImprovement.text = $"Out of all 10 puzzle questions, you answered: {correctPuzzle}\nAmazing Work!";
+        }else if (correctPuzzle >= 4 && correctPuzzle <= 7){
+            puzzleImprovement.text = $"Out of all 10 puzzle questions, you answered: {correctPuzzle}\nGood Job!";
+        }else if (correctPuzzle >= 0 && correctPuzzle <= 3){
+            puzzleImprovement.text = $"Out of all 10 puzzle questions, you answered: {correctPuzzle}\nTry Harder!";
+        }
+
         if (correctIq < correctMath && correctIq < correctReading){
             improvement.text = $"The score on your pattern questions is low! Practice them more!";
         }else if (correctMath < correctIq && correctMath < correctReading){
             improvement.text = $"The score on your math questions is low! Practice them more!";
         }else if (correctReading < correctMath && correctReading < correctIq){
             improvement.text = $"The score on your English questions is low! Practice them more!";
+        }else if (correctReading == correctMath && correctReading < correctIq){
+            improvement.text = $"The score on your English and math questions are low! Practice them more!";
+        }else if (correctMath == correctIq && correctMath < correctReading){
+            improvement.text = $"The score on your math and pattern questions are low! Practice them more!";
+        }else if (correctReading == correctIq && correctIq < correctMath){
+            improvement.text = $"The score on your English and pattern questions are low! Practice them more!";
         }
 
         resultText.text = $"Pattern questions answered: {correctIq}/{HintController.iqQuestions.Length}\nMath questions answered: {correctMath}/{HintController.mathQuestions.Length}\nReading questions answered: {correctReading}/{HintController.readingQuestions.Length}\nPuzzle questions answered: {correctPuzzle}/{HintController.puzzleQuestions.Length}";
