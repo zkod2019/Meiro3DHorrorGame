@@ -64,6 +64,12 @@ public class Timer : MonoBehaviour
                 timeRemaining -= Time.deltaTime;
                 DisplayTime(timeRemaining);
             }
+            else if (timeRemaining <= 5)
+            {
+                cam2.SetActive(true);
+                cam1.SetActive(false);
+                Invoke("DeactivateCam2", 5);
+            }
             else
             {
                 Debug.Log("Time has run out!");
@@ -71,11 +77,12 @@ public class Timer : MonoBehaviour
                 timerIsRunning = false;
                 // Application.LoadLevel(Application.loadedLevel); this works too
                 //DisplayLoop();
-                cam2.SetActive(true);
-                cam1.SetActive(false);
-                Invoke("DeactivateCam2", 10);
+                
+
                 await DisplayLoop();
                 SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+
+                
             }
         }
     }
