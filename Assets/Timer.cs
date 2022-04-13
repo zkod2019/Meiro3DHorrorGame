@@ -22,6 +22,8 @@ public class Timer : MonoBehaviour
     public Text loopText;
     System.Random random = new System.Random();
     public static int loopCount = 0;
+    public GameObject cam1;
+    public GameObject cam2;
 
     private static readonly HttpClient client = new HttpClient();
 
@@ -29,6 +31,8 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     async void Start()
     {
+        cam1.SetActive(true);
+        cam2.SetActive(false);
         timeRemaining = 60; //random.Next(600,1800);
         timerIsRunning = true;
         string firestoreUrl = $"https://firestore.googleapis.com/v1/projects/meiro-ip/databases/(default)/documents/users/{Auth.username}";
@@ -67,11 +71,20 @@ public class Timer : MonoBehaviour
                 timerIsRunning = false;
                 // Application.LoadLevel(Application.loadedLevel); this works too
                 //DisplayLoop();
+                cam2.SetActive(true);
+                cam1.SetActive(false);
+                Invoke("DeactivateCam2", 10);
                 await DisplayLoop();
                 SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
             }
         }
     }
+
+    void DeactivateCam2() {
+        cam1.SetActive(true);
+        cam2.SetActive(false);
+    }
+
 
     void DisplayTime(float timeToDisplay)
     {

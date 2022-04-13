@@ -39,9 +39,8 @@ public class MainMenu : MonoBehaviour
         
     }
 
-    public async void QuitGame()
+    public async void QuitGame() 
     {
-        Debug.Log("Game Quit.");
         if (Auth.idToken != null)
         await GameObject.Find("FirstPersonPlayer").GetComponent<Timer>().DisplayLoop();
         Application.Quit();
