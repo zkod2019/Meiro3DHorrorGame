@@ -5326,9 +5326,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressSpace: {fileID: 2073041388}
-  inputText: {fileID: 1747355068}
   userAnswer: 
   type: 3
+  choices: []
+  wrongAnswer: 0
+  answerText: {fileID: 467679997}
 --- !u!136 &219139985
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10697,9 +10699,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressSpace: {fileID: 2073041388}
-  inputText: {fileID: 1747355068}
   userAnswer: 
   type: 3
+  choices: []
+  wrongAnswer: 0
+  answerText: {fileID: 467679997}
 --- !u!65 &469028559
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12205,9 +12209,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressSpace: {fileID: 2073041388}
-  inputText: {fileID: 1747355068}
   userAnswer: 
   type: 3
+  choices: []
+  wrongAnswer: 0
+  answerText: {fileID: 467679997}
 --- !u!65 &533121649
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17670,9 +17676,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressSpace: {fileID: 2073041388}
-  inputText: {fileID: 1747355068}
   userAnswer: 
   type: 3
+  choices: []
+  wrongAnswer: 0
+  answerText: {fileID: 467679997}
 --- !u!136 &804401770
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -22403,9 +22411,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressSpace: {fileID: 2073041388}
-  inputText: {fileID: 1747355068}
   userAnswer: 
   type: 3
+  choices: []
+  wrongAnswer: 0
+  answerText: {fileID: 467679997}
 --- !u!136 &1025673144
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -29740,9 +29750,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressSpace: {fileID: 2073041388}
-  inputText: {fileID: 1747355068}
   userAnswer: 
   type: 3
+  choices: []
+  wrongAnswer: 0
+  answerText: {fileID: 467679997}
 --- !u!136 &1392596158
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -30874,9 +30886,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressSpace: {fileID: 2073041388}
-  inputText: {fileID: 1747355068}
   userAnswer: 
   type: 3
+  choices: []
+  wrongAnswer: 0
+  answerText: {fileID: 467679997}
 --- !u!65 &1456780336
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37532,9 +37546,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressSpace: {fileID: 2073041388}
-  inputText: {fileID: 1747355068}
   userAnswer: 
   type: 3
+  choices: []
+  wrongAnswer: 0
+  answerText: {fileID: 467679997}
 --- !u!136 &1836683008
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -38998,9 +39014,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressSpace: {fileID: 2073041388}
-  inputText: {fileID: 1747355068}
   userAnswer: 
   type: 3
+  choices: []
+  wrongAnswer: 0
+  answerText: {fileID: 467679997}
 --- !u!65 &1924644230
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40592,9 +40610,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressSpace: {fileID: 2073041388}
-  inputText: {fileID: 1747355068}
   userAnswer: 
   type: 3
+  choices: []
+  wrongAnswer: 0
+  answerText: {fileID: 467679997}
 --- !u!136 &2024862997
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -21,8 +21,7 @@ public class PressX : MonoBehaviour
     public GameObject[] choices;
 
     void Awake() {
-    choices =  new GameObject[7];
-
+        choices =  new GameObject[7];
     }
 
     void Start()
@@ -56,7 +55,7 @@ public class PressX : MonoBehaviour
 
     void OnButtonPress(Button pressed) {
         Debug.Log(pressed);
-         userAnswer = pressed.GetComponentInChildren<TMP_Text>().text;
+        userAnswer = pressed.GetComponentInChildren<TMP_Text>().text;
         Debug.Log(userAnswer);
         Debug.Log(this.questionStatus.answer);
         if (userAnswer == this.questionStatus.answer)
@@ -128,14 +127,16 @@ public class PressX : MonoBehaviour
                 ShowAnswerText();
                 Invoke("HideAnswerText", 2);
             }
-            Debug.Log("Wrong Answer! Try Again!");
+            Debug.Log("WRONG! LAST TRY!");
             if (wrongAnswer == 2){
                 answerText.text = "WRONG! LAST TRY!";
                 ShowAnswerText();
                 Invoke("HideAnswerText", 2);
             }
             if (wrongAnswer == 3){
-                
+                answerText.text = "WRONG AGAIN!";
+                ShowAnswerText();
+                Invoke("HideAnswerText", 2);
                 this.gameObject.SetActive(false);
                 pressX.SetActive(false);
                 question.SetActive(false);
