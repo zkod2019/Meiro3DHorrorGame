@@ -58,8 +58,7 @@ public class PressX : MonoBehaviour
         userAnswer = pressed.GetComponentInChildren<TMP_Text>().text;
         Debug.Log(userAnswer);
         Debug.Log(this.questionStatus.answer);
-        if (userAnswer == this.questionStatus.answer)
-        {
+        if (userAnswer == this.questionStatus.answer) {
             Debug.Log("Correct Answer");
             answerText.text = "CORRECT!";
             Invoke("HideAnswerText", 2);
@@ -94,8 +93,7 @@ public class PressX : MonoBehaviour
                     choices[i].GetComponent<Button>().onClick.RemoveAllListeners();
                 }
 
-            if (weapon != null)
-        {
+            if (weapon != null) {
             var path = new UnityEngine.AI.NavMeshPath();
 
             // this is the little hack i added at the end
@@ -106,21 +104,19 @@ public class PressX : MonoBehaviour
             var weaponPosition = weapon.transform.position;
             weaponPosition.y = -9;
 
-            if (UnityEngine.AI.NavMesh.CalculatePath(selfPosition, weaponPosition, UnityEngine.AI.NavMesh.AllAreas, path))
-            {
-                lineRenderer.positionCount = path.corners.Length;
-                for (int i = 0; i < path.corners.Length; i++)
-                    lineRenderer.SetPosition(i, path.corners[i] + Vector3.up * 5);
-            }
-            else
-            {
-                // idk what you wanna do here
-                Debug.Log("could not find path");
+                if (UnityEngine.AI.NavMesh.CalculatePath(selfPosition, weaponPosition, UnityEngine.AI.NavMesh.AllAreas, path))
+                {
+                    lineRenderer.positionCount = path.corners.Length;
+                    for (int i = 0; i < path.corners.Length; i++)
+                        lineRenderer.SetPosition(i, path.corners[i] + Vector3.up * 5);
+                    Invoke("DisableLineRender", 7);
+                }
+                else{
+                    Debug.Log("could not find path");
+                }
             }
         }
-        }
-        else
-        {
+        else{
             wrongAnswer += 1;
             if (wrongAnswer == 1){
                 answerText.text = "WRONG!";
@@ -165,6 +161,10 @@ public class PressX : MonoBehaviour
             choices[i].GetComponent<Button>().onClick.RemoveAllListeners();
         }
         }
+    }
+
+    void DisableLineRender() {
+        lineRenderer.positionCount = 0;
     }
 
     void HideAnswerText() {
