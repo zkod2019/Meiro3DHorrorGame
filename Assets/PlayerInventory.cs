@@ -26,10 +26,10 @@ public class PlayerInventory : MonoBehaviour
             GetComponentInChildren<Text>().text += collectable.collectableName + ", ";
             count++;
 
-            // if (count==1){
-            //         winnerCanvas.SetActive(true);
-            //         resultsBtn.onClick.AddListener(PlayerResults);
-            // }
+             if (count==1){
+                 winnerCanvas.SetActive(true);
+                 resultsBtn.onClick.AddListener(PlayerResults);
+            }
             if (count==8){
                 Debug.Log("All Obj Collected");
                 exitMaze.SetActive(false);
@@ -118,7 +118,7 @@ public class PlayerInventory : MonoBehaviour
             improvement.text = $"The score on your English and pattern questions are low! Practice them more!";
         }
 
-        resultText.text = $"Pattern questions answered: {correctIq}/{HintController.iqQuestions.Length}\nMath questions answered: {correctMath}/{HintController.mathQuestions.Length}\nReading questions answered: {correctReading}/{HintController.readingQuestions.Length}\nPuzzle questions answered: {correctPuzzle}/{HintController.puzzleQuestions.Length}";
+        resultText.text = $"Pattern questions answered: {correctIq}/{HintController.iqQuestions.Length}\nMath questions answered: {correctMath}/{HintController.mathQuestions.Length}\nReading questions answered: {correctReading}/{HintController.readingQuestions.Length}\nPuzzle questions answered: {correctPuzzle}/{HintController.puzzleQuestions.Length}\nLoops Taken: {Timer.loopCount}";
     }
 
 }
