@@ -41,7 +41,10 @@ public class PressX : MonoBehaviour
 
     void OnTriggerEnter(Collider player)
     {
-        if (!this.questionStatus.answered && player.gameObject.tag == "Player")
+        Debug.Log("Does this");
+        Debug.Log(this.weapon.activeSelf);
+        Debug.Log("work?");
+        if (!this.questionStatus.answered && player.gameObject.tag == "Player" && this.weapon.activeSelf)
         {
             question.GetComponent<Image>().sprite = questionStatus.question;
             pressX.SetActive(true);

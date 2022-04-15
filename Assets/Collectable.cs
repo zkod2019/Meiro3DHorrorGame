@@ -16,6 +16,7 @@ public class Collectable : MonoBehaviour
     void OnTriggerEnter(Collider other) {
         collectSound.Play();
         other.gameObject.GetComponent<PlayerInventory>().Add(this);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 }
