@@ -778,11 +778,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5eeae2c2aa776ac46be67ae162d9512d, type: 3}
---- !u!1 &23831718 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4719076941979770649, guid: 5eeae2c2aa776ac46be67ae162d9512d, type: 3}
-  m_PrefabInstance: {fileID: 23831717}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &24123043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27207,7 +27202,7 @@ MonoBehaviour:
   type: 1
   wrongAnswer: 0
   answerText: {fileID: 467679997}
-  weapon: {fileID: 23831718}
+  weapon: {fileID: 409212754}
   lineRenderer: {fileID: 1338783025}
   choices: []
 --- !u!65 &1274543016
@@ -30036,7 +30031,7 @@ MonoBehaviour:
   type: 2
   wrongAnswer: 0
   answerText: {fileID: 467679997}
-  weapon: {fileID: 23831718}
+  weapon: {fileID: 409212754}
   lineRenderer: {fileID: 1338783025}
   choices: []
 --- !u!136 &1397606161
@@ -38036,7 +38031,7 @@ MonoBehaviour:
   type: 0
   wrongAnswer: 0
   answerText: {fileID: 467679997}
-  weapon: {fileID: 23831718}
+  weapon: {fileID: 409212754}
   lineRenderer: {fileID: 1338783025}
   choices: []
 --- !u!65 &1853746141
@@ -41877,7 +41872,7 @@ MonoBehaviour:
   type: 2
   wrongAnswer: 0
   answerText: {fileID: 467679997}
-  weapon: {fileID: 23831718}
+  weapon: {fileID: 409212754}
   lineRenderer: {fileID: 1338783025}
   choices: []
 --- !u!65 &2061120111

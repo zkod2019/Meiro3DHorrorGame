@@ -26,10 +26,10 @@ public class PlayerInventory : MonoBehaviour
             GetComponentInChildren<Text>().text += collectable.collectableName + ", ";
             count++;
 
-             if (count==1){
-                 winnerCanvas.SetActive(true);
-                 resultsBtn.onClick.AddListener(PlayerResults);
-            }
+            // if (count==1){
+            //     winnerCanvas.SetActive(true);
+            //     resultsBtn.onClick.AddListener(PlayerResults);
+            // }
             if (count==8){
                 Debug.Log("All Obj Collected");
                 exitMaze.SetActive(false);

@@ -41,10 +41,14 @@ public class PressX : MonoBehaviour
 
     void OnTriggerEnter(Collider player)
     {
-        Debug.Log("Does this");
-        Debug.Log(this.weapon.activeSelf);
-        Debug.Log("work?");
-        if (!this.questionStatus.answered && player.gameObject.tag == "Player" && this.weapon.activeSelf)
+        bool inInventory = false;
+        foreach (var collectable in player.gameObject.GetComponent<PlayerInventory>().inventory){
+            if (collectable.gameObject.name == this.weapon.name) {
+                inInventory = true;
+                break;
+            }
+        }
+        if (!this.questionStatus.answered && player.gameObject.tag == "Player" && !inInventory)
         {
             question.GetComponent<Image>().sprite = questionStatus.question;
             pressX.SetActive(true);
