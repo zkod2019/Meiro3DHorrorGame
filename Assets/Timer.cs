@@ -33,7 +33,7 @@ public class Timer : MonoBehaviour
     {
         cam1.SetActive(true);
         cam2.SetActive(false);
-        timeRemaining = random.Next(600,1800);
+        timeRemaining = random.Next(900,1800);
         timerIsRunning = true;
         string firestoreUrl = $"https://firestore.googleapis.com/v1/projects/meiro-ip/databases/(default)/documents/users/{Auth.username}";
 
