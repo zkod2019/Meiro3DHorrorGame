@@ -33,7 +33,7 @@ public class Timer : MonoBehaviour
     {
         cam1.SetActive(true);
         cam2.SetActive(false);
-        timeRemaining = random.Next(900,1800);
+        timeRemaining = 90; //random.Next(900,1800);
         timerIsRunning = true;
         string firestoreUrl = $"https://firestore.googleapis.com/v1/projects/meiro-ip/databases/(default)/documents/users/{Auth.username}";
 
@@ -50,7 +50,7 @@ public class Timer : MonoBehaviour
         loopCount = (int)((JObject)fields.GetValue("loop")).GetValue("integerValue");
         loopText.text =  "Loop: " + loopCount.ToString();
 
-        Debug.Log("Timer iniitliazed!!");
+        Debug.Log("Timer initialized!!");
         Debug.Log(loopText);
     }
 
@@ -71,7 +71,6 @@ public class Timer : MonoBehaviour
                 timerIsRunning = false;
                 // Application.LoadLevel(Application.loadedLevel); this works too
                 //DisplayLoop();
-                
                 cam2.SetActive(true);
                 cam1.SetActive(false);
                 Invoke("DeactivateCam2", 5);
@@ -79,13 +78,12 @@ public class Timer : MonoBehaviour
             }
         }
     }
-
+               
     void DeactivateCam2() {
         cam1.SetActive(true);
         cam2.SetActive(false);
         SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
     }
-
 
     void DisplayTime(float timeToDisplay)
     {

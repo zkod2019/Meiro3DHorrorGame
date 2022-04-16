@@ -30,7 +30,7 @@ public class PlayerInventory : MonoBehaviour
             //     winnerCanvas.SetActive(true);
             //     resultsBtn.onClick.AddListener(PlayerResults);
             // }
-            if (count==8){
+            if (count==1 || count==2 || count==3){
                 Debug.Log("All Obj Collected");
                 exitMaze.SetActive(false);
                 Debug.Log("Exit is open!");

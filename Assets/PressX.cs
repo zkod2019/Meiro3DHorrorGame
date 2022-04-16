@@ -116,7 +116,7 @@ public class PressX : MonoBehaviour
                     lineRenderer.positionCount = path.corners.Length;
                     for (int i = 0; i < path.corners.Length; i++)
                         lineRenderer.SetPosition(i, path.corners[i] + Vector3.up * 5);
-                    Invoke("DisableLineRender", 7);
+                    Invoke("DisableLineRender", 15);
                 }
                 else{
                     Debug.Log("could not find path");
