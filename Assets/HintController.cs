@@ -91,8 +91,6 @@ public class HintController : MonoBehaviour
     public static QuestionStatus[] puzzleQuestions;
     public static GameObject loadingScreen;
 
-    // public GameObject loadingScreen = new GameObject();
-
     static bool initial = true;
     private static readonly HttpClient client = new HttpClient();
 

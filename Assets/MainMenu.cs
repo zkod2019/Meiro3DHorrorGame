@@ -226,14 +226,11 @@ public class MainMenu : MonoBehaviour
         Debug.Log(responseJson);
         Debug.Log(response.StatusCode);
 
-        if (response.StatusCode == HttpStatusCode.OK)
-        {
+        if (response.StatusCode == HttpStatusCode.OK){
             Auth.username = username;
             Auth.idToken = (String)responseJson.GetValue("idToken");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-        else
-        {
+        } else {
             var errorMessage = ((JObject)responseJson.GetValue("error")).GetValue("message").ToObject<string>();
 
             Debug.Log(errorMessage);

@@ -101,15 +101,15 @@ public class PressX : MonoBehaviour
                 }
 
             if (weapon != null) {
-            var path = new UnityEngine.AI.NavMeshPath();
+                var path = new UnityEngine.AI.NavMeshPath();
 
             // this is the little hack i added at the end
             // it wasn't working between barrel->weapon before cuz their Y positions were different
             // so we just set both Y's to the same thing
-            var selfPosition = gameObject.transform.position;
-            selfPosition.y = -9;
-            var weaponPosition = weapon.transform.position;
-            weaponPosition.y = -9;
+                var selfPosition = gameObject.transform.position;
+                selfPosition.y = -9;
+                var weaponPosition = weapon.transform.position;
+                weaponPosition.y = -9;
 
                 if (UnityEngine.AI.NavMesh.CalculatePath(selfPosition, weaponPosition, UnityEngine.AI.NavMesh.AllAreas, path))
                 {
