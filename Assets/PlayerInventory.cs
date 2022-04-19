@@ -41,8 +41,10 @@ public class PlayerInventory : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
             if (other.tag == "exit") { 
+                Debug.Log("THIS ISNT WORKING?!");
                 winnerCanvas.SetActive(true);
                 resultsBtn.onClick.AddListener(PlayerResults);
+                Debug.Log("OR IS IT?");
             }
     }
 

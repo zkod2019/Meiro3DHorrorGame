@@ -9084,7 +9084,6 @@ GameObject:
   - component: {fileID: 414845571}
   - component: {fileID: 414845570}
   - component: {fileID: 414845569}
-  - component: {fileID: 414845568}
   m_Layer: 0
   m_Name: GroundExit
   m_TagString: exit
@@ -9100,25 +9099,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 414845566}
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 142.9, y: -189.82, z: 25.36448}
+  m_LocalPosition: {x: 141.6, y: -190, z: 25.36448}
   m_LocalScale: {x: 136.8, y: 48.7, z: 2.11}
   m_Children: []
   m_Father: {fileID: 801233369}
   m_RootOrder: 255
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
---- !u!65 &414845568
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 414845566}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.86, y: 1.03, z: 6.3}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &414845569
 BoxCollider:
   m_ObjectHideFlags: 0
