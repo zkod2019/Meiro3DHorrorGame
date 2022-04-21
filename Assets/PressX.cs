@@ -68,6 +68,7 @@ public class PressX : MonoBehaviour
         if (userAnswer == this.questionStatus.answer) {
             Debug.Log("Correct Answer");
             answerText.text = "CORRECT!";
+            ShowAnswerText();
             Invoke("HideAnswerText", 2);
              
             if (type == QuestionType.Logic){

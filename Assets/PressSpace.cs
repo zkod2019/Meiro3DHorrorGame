@@ -56,6 +56,7 @@ public class PressSpace : MonoBehaviour
         if (userAnswer == this.questionStatus.answer){
             Debug.Log("Correct Answer");
             answerText.text = "CORRECT!";
+            ShowAnswerText();
             Invoke("HideAnswerText", 2);
             GameObject player = GameObject.Find("FirstPersonPlayer");
             Timer timer = player.GetComponent<Timer>();
@@ -69,15 +70,13 @@ public class PressSpace : MonoBehaviour
                 }
             } 
 
-            
             pressSpace.SetActive(false);
             question.SetActive(false);
             for (int i = 0; i < 7; i++) {
                     choices[i].SetActive(false);
                     choices[i].GetComponent<Button>().onClick.RemoveAllListeners();
                 }
-        }
-        else{
+        } else{
             wrongAnswer += 1;
             if (wrongAnswer == 1){
                 answerText.text = "WRONG! LAST TRY!";
