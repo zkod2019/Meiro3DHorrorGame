@@ -44,7 +44,7 @@ public class BarrelsTest : MonoBehaviour
     }
 
     [UnityTest]
-    public IEnumerator HintObjectCollection()
+    public IEnumerator WrongBarrelInput()
     {
         GoToSignUp();
         string uniqueId = System.Guid.NewGuid().ToString();
@@ -59,11 +59,74 @@ public class BarrelsTest : MonoBehaviour
         barrel.GetComponent<PressX>().ActivateQuestion();
         yield return null;
         
-        var button = GameObject.Find("Choice_B").GetComponent<Button>();
-        button.onClick.Invoke();
-        Assert.That(button, Is.Not.Null);
+        var buttonA = GameObject.Find("Choice_A").GetComponent<Button>();
+        barrel.GetComponent<PressX>().OnButtonPress(buttonA);
         yield return new WaitForSeconds(1);
-       
+        Assert.AreEqual(GameObject.Find("Answer").GetComponent<Text>().text, "WRONG!");
+        yield return null;
+    }
 
+    [UnityTest]
+    public IEnumerator CorrectBarrelInput()
+    {
+        GoToSignUp();
+        string uniqueId = System.Guid.NewGuid().ToString();
+        TestSignUp($"testplayer-{uniqueId}", $"testplayer-{uniqueId}");
+        yield return new WaitForSeconds(40);
+        Assert.That(Auth.idToken, Is.Not.Null);
+        
+        var barrel = GameObject.Find("Barrel_Math_1");
+        GameObject.Find("FirstPersonPlayer").transform.position = barrel.transform.position;
+        Assert.That(barrel, Is.Not.Null);
+        yield return null;
+        barrel.GetComponent<PressX>().ActivateQuestion();
+        yield return null;
+        
+        var buttonB = GameObject.Find("Choice_B").GetComponent<Button>();
+        barrel.GetComponent<PressX>().OnButtonPress(buttonB);
+        yield return new WaitForSeconds(1);
+        Assert.AreEqual(GameObject.Find("Answer").GetComponent<Text>().text, "CORRECT!");
+    }
+
+    [UnityTest]
+    public IEnumerator CorrectCrateInput(){
+        GoToSignUp();
+        string uniqueId = System.Guid.NewGuid().ToString();
+        TestSignUp($"testplayer-{uniqueId}", $"testplayer-{uniqueId}");
+        yield return new WaitForSeconds(40);
+        Assert.That(Auth.idToken, Is.Not.Null);
+        
+        var crate = GameObject.Find("Crate_1");
+        GameObject.Find("FirstPersonPlayer").transform.position = crate.transform.position;
+        Assert.That(crate, Is.Not.Null);
+        yield return null;
+        crate.GetComponent<PressSpace>().ActivateQuestion();
+        yield return null;
+        
+        var buttonD = GameObject.Find("Choice_D").GetComponent<Button>();
+        crate.GetComponent<PressSpace>().OnButtonPress(buttonD);
+        yield return new WaitForSeconds(1);
+        Assert.AreEqual(GameObject.Find("Answer").GetComponent<Text>().text, "CORRECT!");
+    }
+
+    [UnityTest]
+    public IEnumerator WrongCrateInput(){
+        GoToSignUp();
+        string uniqueId = System.Guid.NewGuid().ToString();
+        TestSignUp($"testplayer-{uniqueId}", $"testplayer-{uniqueId}");
+        yield return new WaitForSeconds(40);
+        Assert.That(Auth.idToken, Is.Not.Null);
+        
+        var crate = GameObject.Find("Crate_1");
+        GameObject.Find("FirstPersonPlayer").transform.position = crate.transform.position;
+        Assert.That(crate, Is.Not.Null);
+        yield return null;
+        crate.GetComponent<PressSpace>().ActivateQuestion();
+        yield return null;
+        
+        var buttonC = GameObject.Find("Choice_C").GetComponent<Button>();
+        crate.GetComponent<PressSpace>().OnButtonPress(buttonC);
+        yield return new WaitForSeconds(1);
+        Assert.AreEqual(GameObject.Find("Answer").GetComponent<Text>().text, "WRONG! LAST TRY!");
     }
 }

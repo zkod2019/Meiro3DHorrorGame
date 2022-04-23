@@ -34,7 +34,7 @@ public class PressSpace : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider player)
+    public void OnTriggerEnter(Collider player)
     {
         if (!this.questionStatus.answered && player.gameObject.tag == "Player")
         {
@@ -48,7 +48,8 @@ public class PressSpace : MonoBehaviour
         }
     }
 
-    void OnButtonPress(Button pressed) {
+    public void OnButtonPress(Button pressed) {
+        Debug.Log("Button is pressed");
         Debug.Log(pressed);
         userAnswer = pressed.GetComponentInChildren<TMP_Text>().text;
         Debug.Log(userAnswer);
@@ -122,15 +123,19 @@ public class PressSpace : MonoBehaviour
         answerText.enabled = true;
     }
 
+    public void ActivateQuestion(){
+        question.SetActive(true);
+        for (int i = 0; i < 7; i++) {
+            choices[i].SetActive(true);
+        }
+        pressSpace.SetActive(false);
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && pressSpace.activeSelf)
         {
-            question.SetActive(true);
-            for (int i = 0; i < 7; i++) {
-                choices[i].SetActive(true);
-            }
-            pressSpace.SetActive(false);
+           ActivateQuestion();
         }
     }
 }

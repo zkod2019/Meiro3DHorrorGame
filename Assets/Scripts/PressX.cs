@@ -39,7 +39,7 @@ public class PressX : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider player)
+    public void OnTriggerEnter(Collider player)
     {
         bool inInventory = false;
         foreach (var collectable in player.gameObject.GetComponent<PlayerInventory>().inventory){
@@ -60,7 +60,8 @@ public class PressX : MonoBehaviour
         }
     }
 
-    void OnButtonPress(Button pressed) {
+    public void OnButtonPress(Button pressed) {
+        Debug.Log("Button is pressed");
         Debug.Log(pressed);
         userAnswer = pressed.GetComponentInChildren<TMP_Text>().text;
         Debug.Log(userAnswer);
