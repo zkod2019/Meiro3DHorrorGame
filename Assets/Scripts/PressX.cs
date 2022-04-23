@@ -182,16 +182,20 @@ public class PressX : MonoBehaviour
         answerText.enabled = true;
     }
 
+    public void ActivateQuestion(){
+        question.SetActive(true);
+        for (int i = 0; i < 7; i++) {
+            choices[i].SetActive(true);
+        }
+            //inputText.SetActive(true);
+        pressX.SetActive(false);
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && pressX.activeSelf)
         {
-            question.SetActive(true);
-                    for (int i = 0; i < 7; i++) {
-            choices[i].SetActive(true);
-        }
-            //inputText.SetActive(true);
-            pressX.SetActive(false);
+           ActivateQuestion();
         }
     }
 }

@@ -12,6 +12,7 @@ TagManager:
   - exit
   - result
   - loading
+  - weapon
   layers:
   - Default
   - TransparentFX

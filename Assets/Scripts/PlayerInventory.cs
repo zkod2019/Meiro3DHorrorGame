@@ -38,7 +38,7 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
             if (other.tag == "exit") { 
                 Debug.Log("THIS ISNT WORKING?!");

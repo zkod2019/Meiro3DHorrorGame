@@ -13,8 +13,9 @@ public class Collectable : MonoBehaviour
         gameObject.transform.Rotate(0f, rotationSpeed * Time.deltaTime, 0f, Space.Self);
     }
 
-    void OnTriggerEnter(Collider other) {
+    public void OnTriggerEnter(Collider other) {
         collectSound.Play();
+        Debug.Log(other.gameObject.GetComponent<PlayerInventory>());
         other.gameObject.GetComponent<PlayerInventory>().Add(this);
         gameObject.SetActive(false);
         //Destroy(gameObject);

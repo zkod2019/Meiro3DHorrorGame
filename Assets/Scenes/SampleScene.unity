@@ -708,6 +708,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 844955969945173123, guid: 5eeae2c2aa776ac46be67ae162d9512d, type: 3}
+      propertyPath: m_TagString
+      value: weapon
+      objectReference: {fileID: 0}
     - target: {fileID: 2675361471546267317, guid: 5eeae2c2aa776ac46be67ae162d9512d, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -3657,6 +3661,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon1_AKM
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 99fcce1f10b2ebd4a8cd31a345f6bed8, type: 3}
+      propertyPath: m_TagString
+      value: weapon
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99fcce1f10b2ebd4a8cd31a345f6bed8, type: 3}
 --- !u!1 &166471844
@@ -5172,6 +5180,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 888ce82c0af2ab0499d39c93fb0f4ce4, type: 3}
       propertyPath: m_Name
       value: Weapon5_Book
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 888ce82c0af2ab0499d39c93fb0f4ce4, type: 3}
+      propertyPath: m_TagString
+      value: weapon
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 888ce82c0af2ab0499d39c93fb0f4ce4, type: 3}
       propertyPath: m_RootOrder
@@ -19989,6 +20001,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon6_Shovel
       objectReference: {fileID: 0}
+    - target: {fileID: 1576267883224110, guid: 3b93b5e1490544e968467686126aa217, type: 3}
+      propertyPath: m_TagString
+      value: weapon
+      objectReference: {fileID: 0}
     - target: {fileID: 4634338707192380, guid: 3b93b5e1490544e968467686126aa217, type: 3}
       propertyPath: m_RootOrder
       value: 36
@@ -20532,6 +20548,10 @@ PrefabInstance:
     - target: {fileID: 1289100062823888, guid: 3561d375b004832418eaf9271450e06f, type: 3}
       propertyPath: m_Name
       value: Weapon4_Knife
+      objectReference: {fileID: 0}
+    - target: {fileID: 1289100062823888, guid: 3561d375b004832418eaf9271450e06f, type: 3}
+      propertyPath: m_TagString
+      value: weapon
       objectReference: {fileID: 0}
     - target: {fileID: 4902080754245960, guid: 3561d375b004832418eaf9271450e06f, type: 3}
       propertyPath: m_RootOrder
@@ -30985,6 +31005,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon3_Axe
       objectReference: {fileID: 0}
+    - target: {fileID: 1717991288866742, guid: 1c3945bda9991a64bb0a8ee9ea89a37c, type: 3}
+      propertyPath: m_TagString
+      value: weapon
+      objectReference: {fileID: 0}
     - target: {fileID: 4900444789763622, guid: 1c3945bda9991a64bb0a8ee9ea89a37c, type: 3}
       propertyPath: m_RootOrder
       value: 33
@@ -31053,6 +31077,10 @@ PrefabInstance:
     - target: {fileID: 1271241365851584, guid: a507acc7428eb884298ac20bbe367263, type: 3}
       propertyPath: m_Name
       value: Weapon2_Machete_kukri
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271241365851584, guid: a507acc7428eb884298ac20bbe367263, type: 3}
+      propertyPath: m_TagString
+      value: weapon
       objectReference: {fileID: 0}
     - target: {fileID: 4171793622205532, guid: a507acc7428eb884298ac20bbe367263, type: 3}
       propertyPath: m_RootOrder
@@ -41086,6 +41114,10 @@ PrefabInstance:
     - target: {fileID: 1228361151705804, guid: abeea0a7b0658482b95fed81e2971c8f, type: 3}
       propertyPath: m_Name
       value: Weapon7_Rope
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228361151705804, guid: abeea0a7b0658482b95fed81e2971c8f, type: 3}
+      propertyPath: m_TagString
+      value: weapon
       objectReference: {fileID: 0}
     - target: {fileID: 4699034882561858, guid: abeea0a7b0658482b95fed81e2971c8f, type: 3}
       propertyPath: m_RootOrder
