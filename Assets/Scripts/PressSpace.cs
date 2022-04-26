@@ -98,7 +98,6 @@ public class PressSpace : MonoBehaviour
                 }
             }
         }
-        // Debug.Log(pressed.transform.GetChild(0).GetComponent<Text>().text);
     }
 
     void OnTriggerExit(Collider player)

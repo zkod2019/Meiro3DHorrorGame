@@ -160,10 +160,6 @@ public class HintController : MonoBehaviour
         var firestoreResponseString = await firestoreResponse.Content.ReadAsStringAsync();
         Debug.Log(json);
         Debug.Log(firestoreResponseString);
-
-        // if (firestoreResponse.StatusCode == HttpStatusCode.OK) {
-        //     SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
-        // }
     }
 
     static async Task<Sprite> spriteFromURL(string url)

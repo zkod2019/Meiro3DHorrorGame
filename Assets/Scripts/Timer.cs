@@ -33,7 +33,7 @@ public class Timer : MonoBehaviour
     {
         cam1.SetActive(true);
         cam2.SetActive(false);
-        timeRemaining = 60; //200;  random.Next(900,1800);
+        timeRemaining = random.Next(900,1800);
         timerIsRunning = true;
         string firestoreUrl = $"https://firestore.googleapis.com/v1/projects/meiro-ip/databases/(default)/documents/users/{Auth.username}";
 
@@ -69,8 +69,7 @@ public class Timer : MonoBehaviour
                 Debug.Log("Time has run out!");
                 timeRemaining = 0;
                 timerIsRunning = false;
-                // Application.LoadLevel(Application.loadedLevel); this works too
-                //DisplayLoop();
+               
                 cam2.SetActive(true);
                 cam1.SetActive(false);
                 Invoke("DeactivateCam2", 5);

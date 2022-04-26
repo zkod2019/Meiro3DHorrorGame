@@ -94,7 +94,6 @@ public class PressX : MonoBehaviour
 
             HintController.InitializeBarrels();
             
-            //this.gameObject.SetActive(false);
             pressX.SetActive(false);
             question.SetActive(false);
             for (int i = 0; i < 7; i++) {
@@ -152,7 +151,6 @@ public class PressX : MonoBehaviour
                 }
             }
         }
-        // Debug.Log(pressed.transform.GetChild(0).GetComponent<Text>().text);
     }
 
     void OnTriggerExit(Collider player)
@@ -188,7 +186,6 @@ public class PressX : MonoBehaviour
         for (int i = 0; i < 7; i++) {
             choices[i].SetActive(true);
         }
-            //inputText.SetActive(true);
         pressX.SetActive(false);
     }
 
